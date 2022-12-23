@@ -1,0 +1,20 @@
+[ ] Initialize Map
+	[ ] Verify valid map
+	[ ] Take lines and y coordenate of map
+	[ ] Take points and x coordenate of map
+	[ ] Verify differents lenght lines
+	[ ] Take value of height and color of map
+	[ ] Take build point stack
+
+[ ] Setup Map
+	[ ] Config size of window
+
+[ ] Initiallize mlx
+	[ ] Initialize mlx instance and take them
+	[ ] Initialize mlx window and take them
+
+[ ] Setup mlx
+	[ ] Config hooks to close program 
+	[ ] Config image of program
+
+[ ] Run and loop image
