@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 14:23:56 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/11 22:05:47 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/25 21:51:07 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRCS	= ft_atoi.c       \
 		  ft_putendl_fd.c \
 		  ft_putnbr_fd.c  \
 		  ft_isall.c      \
-		  ft_nbrlen.c
+		  ft_nbrlen.c     \
+		  ft_frsplit.c
 
 BN_SRCS	= ft_lstadd_back_bonus.c  \
 		  ft_lstclear_bonus.c     \
@@ -75,6 +76,7 @@ CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDE		= -I../../ -I../../includes
 BN_UPDATE	= $(findstring $*.c,$?)
 BN_ACTUAL	= $(subst .o,.c,$@)
+MAKEFLAGS	+= --no-print-directory
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     CODES 
 

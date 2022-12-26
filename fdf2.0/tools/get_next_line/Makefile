@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 15:28:11 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/23 16:31:04 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/25 21:51:53 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS	= get_next_line.c \
 OBJS	= $(SRCS:.c=.o)
 
 CFLAGS	= -g -Wall -Wextra -Werror
+MAKEFLAGS	+= --no-print-directory
 
 CC	= cc
 
