@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_pntnew.c                                       :+:      :+:    :+:   */
+/*   fdf_pntadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 19:52:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/25 22:04:40 by thfirmin         ###   ########.fr       */
+/*   Created: 2022/12/25 19:52:21 by thfirmin          #+#    #+#             */
+/*   Updated: 2022/12/25 22:41:46 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pnt	*fdf_pntnew(int hgh, int x, int y, int clr)
+void	fdf_pntadd_back(t_pnt **map, t_pnt *point)
 {
-	t_pnt	*newpnt;
+	t_pnt	*lstpnt;
 
-	newpnt = ft_calloc(1, sizeof(t_pnt));
-	if (!newpnt)
-		return (0);
-	(*newpnt).hgh = hgh;
-	(*newpnt).p_x = x;
-	(*newpnt).p_y = y;
-	(*newpnt).clr = clr;
-	(*newpnt).next = 0;
-	return (newpnt);
+	lstpnt = *map;
+	while (lstpnt && (*lstpnt).next)
+		lstpnt = (*lstpnt).next;
+	if (!lstpnt)
+		*map = point;
+	else
+		lstpnt->next = point;
 }
