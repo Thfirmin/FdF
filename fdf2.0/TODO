@@ -1,7 +1,7 @@
 [ ] Initialize Map
-	[ ] Verify valid map
-	[ ] Take lines and y coordenate of map
-	[ ] Take points and x coordenate of map
+	[x] Verify valid map
+	[x] Take lines and x coordenate of map
+	[ ] Take points and y coordenate of map
 	[ ] Verify differents lenght lines
 	[ ] Take value of height and color of map
 	[ ] Take build point stack
