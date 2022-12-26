@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 06:08:08 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/23 17:21:28 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/26 01:13:50 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ GNL_PATH	= $(addprefix $(TOOL_PATH),get_next_line/)
 
 SRCS_PATH	= srcs/
 MDTRY_PATH	= $(addprefix $(SRCS_PATH),mandatory/)
+UTILS_PATH	= $(addprefix $(SRCS_PATH),utils/)
 MAP_PATH	= $(addprefix $(SRCS_PATH),map/)
 DATA_PATH	= $(addprefix $(SRCS_PATH),data/)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
@@ -32,11 +33,17 @@ DATA_PATH	= $(addprefix $(SRCS_PATH),data/)
 
 MDTRY_SRCS	= fdf_main.c
 
-MAP_SRCS	= fdf_initmap.c
+MAP_SRCS	= fdf_initmap.c \
+			  fdf_is_validmap.c
 
-DATA_SRCS	= fdf_newpnt.c
+DATA_SRCS	= fdf_pntnew.c \
+			  fdf_pntclear.c \
+			  fdf_pntadd_back.c
+
+UTILS_SRCS	= fdf_error.c
 
 SRCS		= $(addprefix $(MDTRY_PATH),$(MDTRY_SRCS)) \
+			  $(addprefix $(UTILS_PATH),$(UTILS_SRCS)) \
 			  $(addprefix $(MAP_PATH),$(MAP_SRCS)) \
 			  $(addprefix $(DATA_PATH),$(DATA_SRCS))
 
