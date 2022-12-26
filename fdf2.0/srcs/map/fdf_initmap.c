@@ -6,63 +6,46 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/23 18:14:08 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/26 01:13:21 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// Verify existent and readable map, read that and build points stack
-int	fdf_initmap(char *pathmap)
+t_pnt	*fdf_initmap(char *pathmap)
 {
-	t_pnt	*point;
+	t_pnt	*map;
 	char	*line;
-	int	fd;
-	int	clmn;
-	int lstx;
+	int		i;
+	int		fd;
 
+	map = 0;
+	i = 0;
 	fd = open(pathmap, O_RDONLY);
-	if ((fd < 0) || (read(0, 0, fd) < 0))
-		return (0);
-	point = 0;
-	line = 1;
-	clmn = 0;
-	while (line && ++clmn)
+	while (1)
 	{
 		line = get_next_line(fd);
-		lstx = fdf_readpnt_content(line, clmn, &point);
-
+		if (!line)
+			break ;
+		fdf_pntadd_back(&map, fdf_pntnew(0, i, 0, 0));
+		i ++;
 		free (line);
 	}
 	close (fd);
-	return (point);
+	return (map);
 }
 
-// Iterate points of a line and build nodes of them
-// implement ft_pntadd_back
-// implement ft_atoi_base
-static void	fdf_readpnt_content(char *line, int y, t_pnt **pnt)
+/*static int fdf_rdline_map(char *line, t_pnt **map, int x)
 {
-	char	**singpnt;
-	char	*is_clrd;
-	int		i;
-	int		vlue[2];
+	int		y;
+	char	**split;
 
-	singpnt = ft_split(line, ' ');
-	if (!singpnt)
+	y = 0;
+	split = ft_split(line, ' ');
+	if (!split)
 		return (-1);
-	i = -1;
-	while (*(singpnt + ++i))
+	while (split[y])
 	{
-		vlue[0] = ft_atoi(*(singpnt + i));
-		is_clrd = ft_strchr(*(singpnt + i), ',');
-		if (is_clrd)
-			vlue[1] = ft_atoi_base((is_clrd + 1),);
-		else
-			vlue[1] = ft_atoi_base("0xFFFFFF",);
-		ft_pntadd_back(pnt, ft_pntnew(vlue[0], (i + 1), y, vlue[1]));
-		free (*(singpnt + i));
+		fdf_
 	}
-	free (singpnt);
-	return (i);
-}
+}*/
