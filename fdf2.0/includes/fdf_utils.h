@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_data.h                                         :+:      :+:    :+:   */
+/*   fdf_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/25 21:39:02 by thfirmin         ###   ########.fr       */
+/*   Created: 2022/12/25 19:45:36 by thfirmin          #+#    #+#             */
+/*   Updated: 2022/12/26 01:16:14 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_DATA_H
-# define FDF_DATA_H
-# include <stdio.h>
+#ifndef FDF_UTILS_H
+# define FDF_UTILS
+# include <errno.h>
+# include <string.h>
+# include <stdlib.h>
 # include "libft.h"
 
-typedef struct s_pnt
-{
-	int				hgh;
-	int				p_x;
-	int				p_y;
-	int				clr;
-	struct s_pnt	*next;
-}					t_pnt;
-
-// Points struct
-t_pnt	*fdf_pntnew(int hgh, int x, int y, int clr);
-void	fdf_pntadd_back(t_pnt **map, t_pnt *point);
-void	fdf_pntclear(t_pnt **pnt);
+void	fdf_error(char *fdf_errno);
+void	fdf_read_error(char *line, char **split, int fd, char *fdf_errno);
 
 #endif
