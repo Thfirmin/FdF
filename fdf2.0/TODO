@@ -6,9 +6,9 @@
 	[x] Take value of height and color of map
 	[x] Take build point stack
 
-[ ] Setup Map
+[x] Setup Map
 	[x] config standard color of window
-	[ ] Config size of window
+	[x] Config size of window
 
 [ ] Initiallize mlx
 	[ ] Initialize mlx instance and take them
