@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/28 00:09:07 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/28 00:22:32 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	fdf_initmap(char *pathmap, t_fdf *fdf)
 	int		x_co;
 	char	*line;
 	char	*end;
+	t_pnt	*lst;
 
 	fd = open(pathmap, O_RDONLY);
 	x_co = 0;
@@ -42,6 +43,9 @@ void	fdf_initmap(char *pathmap, t_fdf *fdf)
 	close (fd);
 	if (end)
 		fdf_error (end);
+	lst = fdf_pntlast(fdf->map);
+	fdf->cnfg->sz_x = lst->p_x;
+	fdf->cnfg->sz_y = lst->p_y;
 }
 
 static char	*fdf_build_line(char *line, int x_co, t_fdf *fdf)

@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 06:08:08 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/28 00:08:41 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/28 00:25:49 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ MAP_SRCS	= fdf_initmap.c \
 
 DATA_SRCS	= fdf_pntnew.c \
 			  fdf_pntclear.c \
-			  fdf_pntadd_back.c
+			  fdf_pntadd_back.c \
+			  fdf_pntlast.c
 
 UTILS_SRCS	= fdf_error.c \
 			  fdf_hex_utils.c \
