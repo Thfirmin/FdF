@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 19:46:48 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/25 19:48:31 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:39:35 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_frsplit(char **split)
 	int	i;
 
 	i = -1;
-	while (*(split + ++i))
+	while (split && *(split + ++i))
 		free(*(split + i));
 	free (split);
 }

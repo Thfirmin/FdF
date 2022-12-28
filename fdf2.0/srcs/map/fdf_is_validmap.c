@@ -6,56 +6,61 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 00:10:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/26 13:22:03 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/27 22:46:17 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//static int	fdf_splititer(char **split);
+// Verify vlue of points
+static char	*fdf_isvalid_vlue(char *line);
+
+// Verify length of line and compare with others
+static char	*fdf_isvalid_length(char *line);
 
 // Verify inexistent or non-readable map
 static int	fdf_isreadable(char *pathmap);
 
 // Verify extension of map
-static int	fdf_isvalid_extension(char *pathmap);
+static char	*fdf_isvalid_extension(char *pathmap);
 
 // Verify inexistent/non-readable or invalid length line map
 void	fdf_is_validmap(char *pathmap)
 {
 	int		fd;
-	//int		ret;
-	//char	*line;
-	//char	**split;
+	char	*ret;
+	char	*line;
 
-	if (!fdf_isvalid_extension(pathmap))
-		fdf_error("Invalid map extension");
 	if ((fd = fdf_isreadable(pathmap)) < 0)
 		fdf_error(strerror(ENOENT));
-	/*ret = 0;
+	line = (void *)1;
+	ret = fdf_isvalid_extension(pathmap);
 	while (line)
 	{
 		line = get_next_line(fd);
-		split = ft_split(line, ' ');
-		if (!ret && !split)
-			ret = ENOMEM;
-		if (!ret && !fdf_is_validpnt(split))
-			ret = -1;
-		ft_frsplit(split);
-	}*/
+		if (!ret)
+			ft_bzero((void *)ft_strchr(line, '\n'), 1);
+		if (!ret)
+			ret = fdf_isvalid_length(line);
+		if (!ret)
+			ret = fdf_isvalid_vlue(line);
+		free (line);
+	}
 	close (fd);
+	if (ret)
+		fdf_error(ret);
 }
 
-static int	fdf_isvalid_extension(char *pathmap)
+static char	*fdf_isvalid_extension(char *pathmap)
 {
 	char	*extension;
 
 	extension = ft_strrchr(pathmap, '.');
 	if (!extension)
-		return (0);
+		return ("Invalid map: extension .fdf only");
 	if (!ft_strnstr(extension, ".fdf", 4))
-		return (0);
-	return (1);
+		return ("Invalid map: extension .fdf only");
+	return (0);
 }
 
 static int	fdf_isreadable(char *pathmap)
@@ -68,17 +73,55 @@ static int	fdf_isreadable(char *pathmap)
 	return (fd);
 }
 
-/*static int	fdf_splititer(char **split)
+static char	*fdf_isvalid_length(char *line)
 {
-	int	i;
+	char		**split;
+	int			i;
+	static int	len = -1;
 
-	i = 0;
-	while (split[i])
+	if (!line)
+		return (0);
+	split = ft_split(line, ' ');
+	if (!split)
+		return (strerror(ENOMEM));
+	i = -1;
+	while (*(split + ++i))
+		if (!ft_isprint(*(*(split + i))))
+			break ;
+	if (len < 0)
+		len = i;
+	else if (len != i)
+		return ("Invalid map: incorrect line length");
+	return (0);
+}
+
+static char	*fdf_isvalid_vlue(char *line)
+{
+	char	**split;
+	char	*hex;
+	int		i;
+	int		ret;
+
+	if (!line)
+		return (0);
+	split = ft_split(line, ' ');
+	if (!split)
+		return (strerror(ENOMEM));
+	i = -1;
+	ret = 0;
+	while (*(split + ++i))
 	{
-		if (ft_isprint(*split[i]))
-			i ++;
-		else
-			break;
+		hex = ft_strchr(*(split + i), ',');
+		if (hex)
+			*hex++ = 0;
+		if (!ret && !fdf_isnumber(*(split + i)))
+			ret = 1;
+		if (!ret && hex && !fdf_ishex(hex))
+			ret = 1;
 	}
-	return (i);
-}*/
+	ft_frsplit(split);
+	if (ret)
+		return ("Invalid map: incorrect point parameter <heigh>,<color>");
+	return (0);
+}
+

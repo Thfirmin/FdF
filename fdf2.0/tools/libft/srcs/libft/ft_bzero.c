@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:37:55 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/05/15 09:57:57 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/27 23:01:33 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	while (s && n--)
+		*(char *)s++ = 0;
 }

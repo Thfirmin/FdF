@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:19:46 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/26 01:14:19 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/28 00:10:59 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ static void	fdf_pntdiagnostic(t_pnt *map);
 
 int	main(int argc, char *argv[])
 {
-	t_pnt	*map;
+	t_fdf	*fdf;
 	if (argc != 2)
 		fdf_error(strerror(EINVAL));
 	fdf_is_validmap(argv[1]);
-	map = fdf_initmap(argv[1]);
-	fdf_pntdiagnostic(map);
-	fdf_pntclear(&map);
+	fdf = fdf_init_setting(argv[1]);
+	fdf_pntdiagnostic(fdf->map);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 06:08:08 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/26 01:13:50 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/28 00:08:41 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ NAME		= fdf
 
 TOOLS		= $(LIBFT_PATH) \
 			  $(GNL_PATH) \
+
+LIBS		= $(LIBFT_PATH)$(LIBFT_SRC).a \
+			  $(GNL_PATH)$(GNL_SRC).a
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     PATH
 
@@ -31,7 +34,8 @@ DATA_PATH	= $(addprefix $(SRCS_PATH),data/)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    SOURCES
 
-MDTRY_SRCS	= fdf_main.c
+MDTRY_SRCS	= fdf_main.c \
+			  fdf_init_setting.c
 
 MAP_SRCS	= fdf_initmap.c \
 			  fdf_is_validmap.c
@@ -40,7 +44,9 @@ DATA_SRCS	= fdf_pntnew.c \
 			  fdf_pntclear.c \
 			  fdf_pntadd_back.c
 
-UTILS_SRCS	= fdf_error.c
+UTILS_SRCS	= fdf_error.c \
+			  fdf_hex_utils.c \
+			  fdf_isnumber.c
 
 SRCS		= $(addprefix $(MDTRY_PATH),$(MDTRY_SRCS)) \
 			  $(addprefix $(UTILS_PATH),$(UTILS_SRCS)) \
@@ -59,7 +65,7 @@ RM			= rm -rf
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 INCLUDE		= -I includes -I$(GNL_PATH) -I$(LIBFT_PATH)
-LINKERS		= -L$(GNL_PATH) -l$(subst lib,,$(GNL_SRC)) -L$(LIBFT_PATH) -l$(subst lib,,$(LIBFT_SRC))
+LINKERS		= -lm -L$(GNL_PATH) -l$(subst lib,,$(GNL_SRC)) -L$(LIBFT_PATH) -l$(subst lib,,$(LIBFT_SRC))
 MAKEFLAGS	+= --no-print-directory
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     CODES 
@@ -94,7 +100,7 @@ all:	tools_update $(NAME)
 tools_update:
 	$(foreach tools,$(TOOLS),make -C $(tools);)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(LIBS)
 	$(CC) -g $(CFLAGS) $(INCLUDE) $(OBJS) $(LINKERS) -o $(NAME) 
 
 clean:
@@ -104,7 +110,7 @@ endif
 	$(foreach tools,$(TOOLS),make -C $(tools) clean;)
 
 fclean: clean
-ifneq (,$(ls $(NAME) 2> /dev/null))
+ifneq (,$(shell ls $(NAME) 2> /dev/null))
 	$(RM) $(NAME)
 endif
 	$(foreach tools,$(TOOLS),make -C $(tools) fclean;)

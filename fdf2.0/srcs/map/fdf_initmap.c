@@ -6,46 +6,84 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/26 01:13:21 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/28 00:09:07 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pnt	*fdf_initmap(char *pathmap)
-{
-	t_pnt	*map;
-	char	*line;
-	int		i;
-	int		fd;
+// Read values, desassemble heigh and color and mount a point node
+static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf);
 
-	map = 0;
-	i = 0;
+// Read a line of map, desassemble and mount a line map linked list
+static char		*fdf_build_line(char *line, int x_co, t_fdf *fdf);
+
+// Initialize map: Read them and build map linked list
+void	fdf_initmap(char *pathmap, t_fdf *fdf)
+{
+	int		fd;
+	int		x_co;
+	char	*line;
+	char	*end;
+
 	fd = open(pathmap, O_RDONLY);
-	while (1)
+	x_co = 0;
+	end = 0;
+	line = (void *)1;
+	while(line && ++x_co)
 	{
 		line = get_next_line(fd);
-		if (!line)
-			break ;
-		fdf_pntadd_back(&map, fdf_pntnew(0, i, 0, 0));
-		i ++;
+		if (!end)
+			ft_bzero((void *)ft_strchr(line, '\n'), 1);
+		if (!end)
+			end = fdf_build_line(line, x_co, fdf);
 		free (line);
 	}
 	close (fd);
-	return (map);
+	if (end)
+		fdf_error (end);
 }
 
-/*static int fdf_rdline_map(char *line, t_pnt **map, int x)
+static char	*fdf_build_line(char *line, int x_co, t_fdf *fdf)
 {
-	int		y;
 	char	**split;
+	int		y_co;
+	t_pnt	*point;
 
-	y = 0;
 	split = ft_split(line, ' ');
-	if (!split)
-		return (-1);
-	while (split[y])
+	if (!split && line)
+		return (strerror(ENOMEM));
+	y_co = -1;
+	while (line && *(split + ++y_co))
 	{
-		fdf_
+		point = fdf_build_point(*(split + y_co), x_co, (y_co + 1), fdf);
+		if (!point)
+		{
+			fdf_pntclear(&(fdf->map));
+			break ;
+		}
+		fdf_pntadd_back(&(fdf->map), point);
 	}
-}*/
+	ft_frsplit(split);
+	if (!fdf->map)
+		return (strerror(ENOMEM));
+	return (0);
+}
+
+static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf)
+{
+	t_pnt			*node;
+	char			*hex;
+	unsigned int	color;
+
+	hex = ft_strchr(vlue, ',');
+	if (hex)
+	{
+		*hex++ = 0;
+		color = fdf_htoi(hex);
+	}
+	else
+		color = fdf->cnfg->std_color;
+	node = fdf_pntnew(ft_atoi(vlue), x_co, y_co, color);
+	return (node);
+}

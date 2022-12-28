@@ -1,10 +1,10 @@
-[ ] Initialize Map
+[x] Initialize Map
 	[x] Verify valid map
 	[x] Take lines and x coordenate of map
-	[ ] Take points and y coordenate of map
-	[ ] Verify differents lenght lines
-	[ ] Take value of height and color of map
-	[ ] Take build point stack
+	[x] Take points and y coordenate of map
+	[x] Verify differents lenght lines
+	[x] Take value of height and color of map
+	[x] Take build point stack
 
 [ ] Setup Map
 	[ ] Config size of window

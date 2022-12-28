@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 15:28:11 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/25 21:51:53 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/27 23:35:22 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,14 @@ $(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
+ifneq (,$(shell ls $(OBJS) 2> /dev/null))
 	rm -rf $(OBJS)
+endif
 
 fclean:	clean
+ifneq (,$(shell ls $(NAME) 2> /dev/null))
 	rm -rf $(NAME)
+endif
 
 re:	fclean all
 

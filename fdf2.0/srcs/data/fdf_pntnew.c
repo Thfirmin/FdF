@@ -6,13 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 19:52:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/25 22:04:40 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/27 23:31:11 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pnt	*fdf_pntnew(int hgh, int x, int y, int clr)
+t_pnt	*fdf_pntnew(int hgh, int x, int y, unsigned int clr)
 {
 	t_pnt	*newpnt;
 
