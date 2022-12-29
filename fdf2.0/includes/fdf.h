@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:18:24 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/27 23:58:30 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:32:00 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 
 // Map init
 void	fdf_is_validmap(char *pathmap);
-void	fdf_initmap(char *pathmap, t_fdf *fdf);
+void	fdf_initmap(char *pathmap, t_fdf **fdf);
 
 #endif

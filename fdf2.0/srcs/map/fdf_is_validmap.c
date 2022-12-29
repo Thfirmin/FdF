@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_is_validmap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 00:10:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/27 22:46:17 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:35:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,24 @@ void	fdf_is_validmap(char *pathmap)
 	char	*line;
 
 	if ((fd = fdf_isreadable(pathmap)) < 0)
-		fdf_error(strerror(ENOENT));
-	line = (void *)1;
+		fdf_error(strerror(ENOENT), 0);
+	line = 0;
 	ret = fdf_isvalid_extension(pathmap);
-	while (line)
+	if (!ret)
+		line = (void *)1;
+	while (!ret && line)
 	{
 		line = get_next_line(fd);
-		if (!ret)
 			ft_bzero((void *)ft_strchr(line, '\n'), 1);
-		if (!ret)
-			ret = fdf_isvalid_length(line);
-		if (!ret)
-			ret = fdf_isvalid_vlue(line);
+		if ((ret = fdf_isvalid_length(line)) != 0)
+			break ;
+		else if ((ret = fdf_isvalid_vlue(line)) != 0)
+			break ;
 		free (line);
 	}
-	close (fd);
+	fdf_closefile(fd, line);
 	if (ret)
-		fdf_error(ret);
+		fdf_error(ret, 0);
 }
 
 static char	*fdf_isvalid_extension(char *pathmap)
@@ -88,6 +89,7 @@ static char	*fdf_isvalid_length(char *line)
 	while (*(split + ++i))
 		if (!ft_isprint(*(*(split + i))))
 			break ;
+	ft_frsplit(split);
 	if (len < 0)
 		len = i;
 	else if (len != i)

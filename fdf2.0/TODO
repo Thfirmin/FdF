@@ -10,6 +10,8 @@
 	[x] config standard color of window
 	[x] Config size of window
 
+[ ] Fix possibles memory segfault
+
 [ ] Initiallize mlx
 	[ ] Initialize mlx instance and take them
 	[ ] Initialize mlx window and take them

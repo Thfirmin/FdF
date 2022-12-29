@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_data.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/28 00:23:25 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:30:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ typedef struct s_fdf
 }				t_fdf;
 
 // Fdf head setting
-t_fdf	*fdf_init_setting(char *pathmap);
+void	fdf_init_setting(char *pathmap, t_fdf **fdf);
+void	fdf_fdfclear(t_fdf **fdf);
 
 // Standard config
-void	fdf_std_settings(t_fdf *fdf);
+void	fdf_std_settings(t_fdf **fdf);
 
 // Points struct
 t_pnt	*fdf_pntnew(int hgh, int x, int y, unsigned int clr);

@@ -1,12 +1,12 @@
 # **************************************************************************** #
-                                                                              #
+#                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/13 06:08:08 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/28 00:25:49 by thfirmin         ###   ########.fr        #
+#    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
+#    Updated: 2022/12/29 17:08:12 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,22 @@
 
 NAME		= fdf
 
+UNAME		= $(shell uname)
+
 TOOLS		= $(LIBFT_PATH) \
 			  $(GNL_PATH) \
+			  $(MLX_PATH)
 
 LIBS		= $(LIBFT_PATH)$(LIBFT_SRC).a \
-			  $(GNL_PATH)$(GNL_SRC).a
+			  $(GNL_PATH)$(GNL_SRC).a \
+#			  $(MLX_PATH)$(MLX_SRC).a
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     PATH
 
 TOOL_PATH	= tools/
 LIBFT_PATH	= $(addprefix $(TOOL_PATH),libft/)
 GNL_PATH	= $(addprefix $(TOOL_PATH),get_next_line/)
+MLX_PATH	= $(addprefix $(TOOL_PATH),mlx/)
 
 SRCS_PATH	= srcs/
 MDTRY_PATH	= $(addprefix $(SRCS_PATH),mandatory/)
@@ -43,11 +48,13 @@ MAP_SRCS	= fdf_initmap.c \
 DATA_SRCS	= fdf_pntnew.c \
 			  fdf_pntclear.c \
 			  fdf_pntadd_back.c \
-			  fdf_pntlast.c
+			  fdf_pntlast.c \
+			  fdf_fdfclear.c
 
 UTILS_SRCS	= fdf_error.c \
 			  fdf_hex_utils.c \
-			  fdf_isnumber.c
+			  fdf_isnumber.c \
+			  fdf_closefile.c
 
 SRCS		= $(addprefix $(MDTRY_PATH),$(MDTRY_SRCS)) \
 			  $(addprefix $(UTILS_PATH),$(UTILS_SRCS)) \
@@ -59,14 +66,21 @@ OBJS		= $(SRCS:.c=.o)
 LIBFT_SRC	= libft
 
 GNL_SRC		= libgnl
+
+#MLX_SRC		= ifneq($(UNAME),Linux)
+
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    ALIASES 
 
 RM			= rm -rf
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-INCLUDE		= -I includes -I$(GNL_PATH) -I$(LIBFT_PATH)
-LINKERS		= -lm -L$(GNL_PATH) -l$(subst lib,,$(GNL_SRC)) -L$(LIBFT_PATH) -l$(subst lib,,$(LIBFT_SRC))
+INCLUDE		= -I includes -I$(GNL_PATH) -I$(LIBFT_PATH) -I$(MLX_PATH)
+
+LINKERS		=	-lm -L$(GNL_PATH) -l$(subst lib,,$(GNL_SRC)) \
+-L$(LIBFT_PATH) -l$(subst lib,,$(LIBFT_SRC)) \
+-L$(MLX_PATH) -l$(subst lib,,$(MLX_SRC))
+
 MAKEFLAGS	+= --no-print-directory
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     CODES 
@@ -96,19 +110,30 @@ FULLER			= \e[7m
 .c.o:
 	$(CC) -g $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o) 
 
-all:	tools_update $(NAME)
+all:	$(MLX_PATH) tools_update $(NAME)
+
+$(MLX_PATH):
+	echo $(UNAME)
+ifeq ($(UNAME),Linux)
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_PATH)
+endif
+
 
 tools_update:
 	$(foreach tools,$(TOOLS),make -C $(tools);)
 
 $(NAME):	$(OBJS) $(LIBS)
-	$(CC) -g $(CFLAGS) $(INCLUDE) $(OBJS) $(LINKERS) -o $(NAME) 
+	$(CC) -g $(CFLAGS) $(OBJS) $(LINKERS) -o $(NAME) 
 
-clean:
+mclean:
 ifneq (,$(shell ls $(OBJS) 2> /dev/null))
 	$(RM) $(OBJS)
 endif
+
+tclean:
 	$(foreach tools,$(TOOLS),make -C $(tools) clean;)
+
+clean: mclean tclean
 
 fclean: clean
 ifneq (,$(shell ls $(NAME) 2> /dev/null))
@@ -118,6 +143,6 @@ endif
 
 re:			fclean all
 
-.PHONY:		all clean fclean re tools_update
+.PHONY:		all clean fclean re tools_update tclean mclean
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # vim: fdm=marker fmr=+>,<+ ts=4 sw=4 nofen noet:

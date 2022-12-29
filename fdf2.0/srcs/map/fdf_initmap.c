@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_initmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/28 00:22:32 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:45:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf);
 static char		*fdf_build_line(char *line, int x_co, t_fdf *fdf);
 
 // Initialize map: Read them and build map linked list
-void	fdf_initmap(char *pathmap, t_fdf *fdf)
+void	fdf_initmap(char *pathmap, t_fdf **fdf)
 {
 	int		fd;
 	int		x_co;
@@ -27,25 +27,23 @@ void	fdf_initmap(char *pathmap, t_fdf *fdf)
 	char	*end;
 	t_pnt	*lst;
 
-	fd = open(pathmap, O_RDONLY);
+	fd = open (pathmap, O_RDONLY);
 	x_co = 0;
-	end = 0;
 	line = (void *)1;
 	while(line && ++x_co)
 	{
-		line = get_next_line(fd);
-		if (!end)
-			ft_bzero((void *)ft_strchr(line, '\n'), 1);
-		if (!end)
-			end = fdf_build_line(line, x_co, fdf);
+		line = get_next_line (fd);
+		ft_bzero((void *)ft_strchr(line, '\n'), 1);
+		if ((end = fdf_build_line(line, x_co, *fdf)))
+			break ;
 		free (line);
 	}
-	close (fd);
+	fdf_closefile (fd, line);
 	if (end)
-		fdf_error (end);
-	lst = fdf_pntlast(fdf->map);
-	fdf->cnfg->sz_x = lst->p_x;
-	fdf->cnfg->sz_y = lst->p_y;
+		fdf_error (end, fdf);
+	lst = fdf_pntlast((*fdf)->map);
+	(*fdf)->cnfg->sz_x = lst->p_x;
+	(*fdf)->cnfg->sz_y = lst->p_y;
 }
 
 static char	*fdf_build_line(char *line, int x_co, t_fdf *fdf)

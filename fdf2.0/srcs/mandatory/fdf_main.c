@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:19:46 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/28 00:10:59 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:31:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ int	main(int argc, char *argv[])
 {
 	t_fdf	*fdf;
 	if (argc != 2)
-		fdf_error(strerror(EINVAL));
+		fdf_error(strerror(EINVAL), 0);
 	fdf_is_validmap(argv[1]);
-	fdf = fdf_init_setting(argv[1]);
+	fdf_init_setting(argv[1], &fdf);
 	fdf_pntdiagnostic(fdf->map);
+	fdf_fdfclear(&fdf);
 	return (0);
 }
 
