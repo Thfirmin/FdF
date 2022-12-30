@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2022/12/29 22:00:54 by marvin           ###   ########.fr        #
+#    Updated: 2022/12/30 15:17:49 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ OBJS	= $(SRCS:.c=.o)
 # +>                                    ALIASES 
 
 MAKEFLAGS	+= --no-print-directory
-CFLAGS		= -g -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 ifeq ($(OS),Linux)
 MLXFLAGS	= -lXext -lX11 -lz
 else ifeq ($(OS),Darwin)
@@ -111,6 +111,10 @@ FULLER			= \e[7m
 
 all:	update_tools $(NAME)
 
+debug: CFLAGS += -g
+
+debug: all
+
 update_tools: $(PTH_MLX)
 	make -C $(PTH_FT)
 	make -C $(PTH_GNL)
@@ -148,6 +152,6 @@ endif
 
 re:	fclean all
 
-.PHONY: all re mclean tclean clean fclean update_tools
+.PHONY: all re mclean tclean clean fclean update_tools debug
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # vim: fdm=marker fmr=+>,<+ ts=4 sw=4 nofen noet:
