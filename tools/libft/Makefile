@@ -6,7 +6,7 @@
 #    By: thfirmin <thiagofirmino2001@gmail.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 21:07:07 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/25 21:51:33 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/30 15:34:44 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,9 @@ FULLER			= \e[7m
 # +>                                     RULES 
 
 all:		$(NAME)
+
+debug:
+	$(foreach libs,$(LIBS),$(MAKE) $(libs) debug;)
 
 $(NAME):	update
 

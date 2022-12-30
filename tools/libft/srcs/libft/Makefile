@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 14:23:56 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/27 14:45:23 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/30 15:27:37 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ BN_OBJS	= $(subst .c,.o,$(BN_SRCS))
 
 PATH_NAME	= ../../
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 INCLUDE		= -I../../ -I../../includes
 BN_UPDATE	= $(findstring $*.c,$?)
 BN_ACTUAL	= $(subst .o,.c,$@)
@@ -103,6 +103,10 @@ FULLER			= \e[7m
 # +>                                     RULES 
 
 all:		$(NAME)
+
+debug:	CFLAGS += -g
+
+debug:	all
 
 $(NAME):	$(OBJS)
 	ar -rcs $(PATH_NAME)$(NAME) $(OBJS)

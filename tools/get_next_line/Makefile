@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 15:28:11 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/29 21:39:55 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/30 15:29:42 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,16 @@ SRCS	= get_next_line.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-CFLAGS	= -g -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 MAKEFLAGS	+= --no-print-directory
 
 CC	= cc
 
 all:	$(NAME)
+
+debug:	CFLAGS += -g
+
+debug:	all
 
 $(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)

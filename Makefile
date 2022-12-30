@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2022/12/30 15:17:49 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/30 15:33:29 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,12 +113,17 @@ all:	update_tools $(NAME)
 
 debug: CFLAGS += -g
 
-debug: all
+debug: update_dbgtools $(NAME)
 
 update_tools: $(PTH_MLX)
 	make -C $(PTH_FT)
 	make -C $(PTH_GNL)
 	make -C $(PTH_MLX)
+
+update_dbgtools: $(PTH_MLX)
+	make -C $(PTH_FT) debug
+	make -C $(PTH_GNL) debug
+	make -C $(PTH_MLX) debug
 
 $(PTH_MLX):
 	tar -xf tools/minilibx-$(OS).tar -C tools/
