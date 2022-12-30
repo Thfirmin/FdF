@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 20:41:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/05/27 05:11:55 by thfirmin         ###   ########.fr       */
+/*   Updated: 2022/12/30 00:10:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 
 	count = 0;
 	lastocur = -1;
-	while (s[count] != '\0')
+	while (s[count])
 	{
 		if (s[count] == (char) c)
 			lastocur = count;

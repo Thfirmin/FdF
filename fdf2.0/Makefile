@@ -6,82 +6,81 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2022/12/29 17:08:12 by marvin           ###   ########.fr        #
+#    Updated: 2022/12/29 22:00:54 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# +>                                     NAME 
+# +>                                     NAME
 
 NAME		= fdf
 
-UNAME		= $(shell uname)
+OS			= $(shell uname)
 
-TOOLS		= $(LIBFT_PATH) \
-			  $(GNL_PATH) \
-			  $(MLX_PATH)
+FT			= $(PTH_FT)$(SRC_FT).a
 
-LIBS		= $(LIBFT_PATH)$(LIBFT_SRC).a \
-			  $(GNL_PATH)$(GNL_SRC).a \
-#			  $(MLX_PATH)$(MLX_SRC).a
+GNL			= $(PTH_GNL)$(SRC_GNL).a
+
+MLX			= $(PTH_MLX)$(SRC_MLX).a
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     PATH
 
-TOOL_PATH	= tools/
-LIBFT_PATH	= $(addprefix $(TOOL_PATH),libft/)
-GNL_PATH	= $(addprefix $(TOOL_PATH),get_next_line/)
-MLX_PATH	= $(addprefix $(TOOL_PATH),mlx/)
+PTH_TOOL	= tools/
+PTH_FT		= $(addprefix $(PTH_TOOL),libft/)
+PTH_GNL		= $(addprefix $(PTH_TOOL),get_next_line/)
+PTH_MLX		= $(addprefix $(PTH_TOOL),mlx/)
 
-SRCS_PATH	= srcs/
-MDTRY_PATH	= $(addprefix $(SRCS_PATH),mandatory/)
-UTILS_PATH	= $(addprefix $(SRCS_PATH),utils/)
-MAP_PATH	= $(addprefix $(SRCS_PATH),map/)
-DATA_PATH	= $(addprefix $(SRCS_PATH),data/)
+PTH_SRCS	= srcs/
+PTH_MDTRY	= $(addprefix $(PTH_SRCS),mandatory/)
+PTH_MAP		= $(addprefix $(PTH_SRCS),map/)
+PTH_DATA	= $(addprefix $(PTH_SRCS),data/)
+PTH_UTILS	= $(addprefix $(PTH_SRCS),utils/)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    SOURCES
 
-MDTRY_SRCS	= fdf_main.c \
+SRC_FT	= libft
+
+SRC_GNL	= libgnl
+
+SRC_MLX	= libmlx
+
+SRC_MDTRY	= fdf_main.c \
 			  fdf_init_setting.c
 
-MAP_SRCS	= fdf_initmap.c \
-			  fdf_is_validmap.c
+SRC_MAP		= fdf_is_validmap.c \
+			  fdf_initmap.c
 
-DATA_SRCS	= fdf_pntnew.c \
-			  fdf_pntclear.c \
+SRC_DATA	= fdf_fdfclear.c \
 			  fdf_pntadd_back.c \
-			  fdf_pntlast.c \
-			  fdf_fdfclear.c
+			  fdf_pntclear.c \
+			  fdf_pntnew.c \
+			  fdf_pntlast.c
 
-UTILS_SRCS	= fdf_error.c \
+SRC_UTILS	= fdf_closefile.c \
+			  fdf_error.c \
 			  fdf_hex_utils.c \
-			  fdf_isnumber.c \
-			  fdf_closefile.c
+			  fdf_isnumber.c
 
-SRCS		= $(addprefix $(MDTRY_PATH),$(MDTRY_SRCS)) \
-			  $(addprefix $(UTILS_PATH),$(UTILS_SRCS)) \
-			  $(addprefix $(MAP_PATH),$(MAP_SRCS)) \
-			  $(addprefix $(DATA_PATH),$(DATA_SRCS))
+SRCS	= $(addprefix $(PTH_MDTRY),$(SRC_MDTRY)) \
+		  $(addprefix $(PTH_MAP),$(SRC_MAP)) \
+		  $(addprefix $(PTH_DATA),$(SRC_DATA)) \
+		  $(addprefix $(PTH_UTILS),$(SRC_UTILS))
 
-OBJS		= $(SRCS:.c=.o)
-
-LIBFT_SRC	= libft
-
-GNL_SRC		= libgnl
-
-#MLX_SRC		= ifneq($(UNAME),Linux)
-
+OBJS	= $(SRCS:.c=.o)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    ALIASES 
 
-RM			= rm -rf
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-INCLUDE		= -I includes -I$(GNL_PATH) -I$(LIBFT_PATH) -I$(MLX_PATH)
-
-LINKERS		=	-lm -L$(GNL_PATH) -l$(subst lib,,$(GNL_SRC)) \
--L$(LIBFT_PATH) -l$(subst lib,,$(LIBFT_SRC)) \
--L$(MLX_PATH) -l$(subst lib,,$(MLX_SRC))
-
 MAKEFLAGS	+= --no-print-directory
+CFLAGS		= -g -Wall -Wextra -Werror
+ifeq ($(OS),Linux)
+MLXFLAGS	= -lXext -lX11 -lz
+else ifeq ($(OS),Darwin)
+MLXFLAGS	= -framework OpenGL -framework AppKit
+endif
+INCLUDE		= -Iincludes -I$(PTH_FT) -I$(PTH_GNL) -I$(PTH_MLX)
+LINKER		= -L$(PTH_FT) -l$(subst lib,,$(SRC_FT)) \
+			  -L$(PTH_GNL) -l$(subst lib,,$(SRC_GNL)) \
+			  -L$(PTH_MLX) -l$(subst lib,,$(SRC_MLX)) \
+			  -lm
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                     CODES 
 
@@ -108,41 +107,47 @@ FULLER			= \e[7m
 # +>                                     RULES 
 
 .c.o:
-	$(CC) -g $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o) 
+	$(CC) $(CFLAGS) -O3 $(INCLUDE) -c $< -o $(<:.c=.o)
 
-all:	$(MLX_PATH) tools_update $(NAME)
+all:	update_tools $(NAME)
 
-$(MLX_PATH):
-	echo $(UNAME)
-ifeq ($(UNAME),Linux)
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_PATH)
-endif
+update_tools: $(PTH_MLX)
+	make -C $(PTH_FT)
+	make -C $(PTH_GNL)
+	make -C $(PTH_MLX)
 
+$(PTH_MLX):
+	tar -xf tools/minilibx-$(OS).tar -C tools/
 
-tools_update:
-	$(foreach tools,$(TOOLS),make -C $(tools);)
-
-$(NAME):	$(OBJS) $(LIBS)
-	$(CC) -g $(CFLAGS) $(OBJS) $(LINKERS) -o $(NAME) 
+$(NAME):	$(FT) $(GNL) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LINKER) $(MLXFLAGS) -o $(NAME)
 
 mclean:
 ifneq (,$(shell ls $(OBJS) 2> /dev/null))
-	$(RM) $(OBJS)
+	rm -rf $(OBJS)
 endif
 
 tclean:
-	$(foreach tools,$(TOOLS),make -C $(tools) clean;)
+	make -C $(PTH_FT) clean
+	make -C $(PTH_GNL) clean
+ifneq (,$(shell ls $(PTH_MLX) 2> /dev/null))
+	make -C $(PTH_MLX) clean
+endif
 
 clean: mclean tclean
 
 fclean: clean
-ifneq (,$(shell ls $(NAME) 2> /dev/null))
-	$(RM) $(NAME)
+	make -C $(PTH_FT) fclean
+	make -C $(PTH_GNL) fclean
+ifneq (,$(shell ls $(PTH_MLX) 2> /dev/null))
+	rm -rf $(PTH_MLX)
 endif
-	$(foreach tools,$(TOOLS),make -C $(tools) fclean;)
+ifneq (,$(shell ls $(NAME) 2> /dev/null))
+	rm -rf $(NAME)
+endif
 
-re:			fclean all
+re:	fclean all
 
-.PHONY:		all clean fclean re tools_update tclean mclean
+.PHONY: all re mclean tclean clean fclean update_tools
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # vim: fdm=marker fmr=+>,<+ ts=4 sw=4 nofen noet:

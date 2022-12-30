@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 00:10:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 14:35:29 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/30 00:33:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static char	*fdf_isvalid_extension(char *pathmap)
 	char	*extension;
 
 	extension = ft_strrchr(pathmap, '.');
-	if (!extension)
+	if (!extension || (extension == pathmap))
 		return ("Invalid map: extension .fdf only");
-	if (!ft_strnstr(extension, ".fdf", 4))
+	if (ft_strncmp(extension, ".fdf", 5))
 		return ("Invalid map: extension .fdf only");
 	return (0);
 }

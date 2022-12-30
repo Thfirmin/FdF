@@ -20,5 +20,7 @@ void	fdf_fdfclear(t_fdf **fdf)
 		free((**fdf).cnfg);
 	if ((**fdf).map)
 		fdf_pntclear(&(**fdf).map);
+	//if ((**fdf).minix)
+	//	fdf_mlxclear(&(**fdf).minix);
 	free(*fdf);
 }

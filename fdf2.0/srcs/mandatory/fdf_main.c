@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:19:46 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 14:31:15 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/30 00:06:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	fdf_pntdiagnostic(t_pnt *map)
 {
 	int		i;
 
+	if (!map)
+		return ;
 	i = 0;
 	ft_printf("\n|------------------------| MAP |------------------------|\n");
 	while (map)

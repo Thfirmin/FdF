@@ -6,7 +6,7 @@
 #    By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 15:28:11 by thfirmin          #+#    #+#              #
-#    Updated: 2022/12/27 23:35:22 by thfirmin         ###   ########.fr        #
+#    Updated: 2022/12/29 21:39:55 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)
+	ranlib $(NAME)
 
 clean:
 ifneq (,$(shell ls $(OBJS) 2> /dev/null))

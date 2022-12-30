@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 14:30:32 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/29 22:26:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_DATA_H
 # include <stdio.h>
 # include "libft.h"
+# include "mlx.h"
 
 // Standard fdf configurations
 typedef struct s_config
@@ -33,11 +34,19 @@ typedef struct s_pnt
 	struct s_pnt	*next;
 }					t_pnt;
 
+// Mlx structure
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}			t_mlx;
+
 // Setting master  of fdf
 typedef struct s_fdf
 {
 	t_config	*cnfg;
 	t_pnt		*map;
+	t_mlx		*minix;
 }				t_fdf;
 
 // Fdf head setting
@@ -46,6 +55,9 @@ void	fdf_fdfclear(t_fdf **fdf);
 
 // Standard config
 void	fdf_std_settings(t_fdf **fdf);
+
+// Mlx config
+void	fdf_initmlx(t_fdf **fdf);
 
 // Points struct
 t_pnt	*fdf_pntnew(int hgh, int x, int y, unsigned int clr);
