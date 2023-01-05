@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_error.c                                        :+:      :+:    :+:   */
+/*   fdf_libs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 20:03:58 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 14:16:23 by marvin           ###   ########.fr       */
+/*   Created: 2022/12/31 16:49:13 by thfirmin          #+#    #+#             */
+/*   Updated: 2023/01/03 21:13:33 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FDF_LIBS_H
+# define FDF_LIBS_H
+# include "libft.h"
+# include "get_next_line.h"
+# include "mlx.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <errno.h>
+# include <string.h>
+# include <math.h>
 
-void	fdf_error(char *fdf_errno, t_fdf **fdf)
-{
-	if (fdf)
-		fdf_fdfclear(fdf);
-	ft_putendl_fd(fdf_errno, 2);
-	exit(2);
-}
+#endif

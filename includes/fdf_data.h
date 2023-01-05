@@ -6,23 +6,34 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 22:26:43 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/03 00:21:00 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_DATA_H
 # define FDF_DATA_H
-# include <stdio.h>
-# include "libft.h"
-# include "mlx.h"
 
-// Standard fdf configurations
-typedef struct s_config
+// Graphic setting structure
+typedef struct s_set
 {
-	unsigned int	std_color;
-	unsigned int	sz_x;
-	unsigned int	sz_y;
-}					t_config;
+	int		std_clr;
+	int		p_spc;
+	int		border;
+	char	*head;
+	int		s_x;
+	int		s_y;
+	int		bpp;
+	int		llen;
+	int		endn;
+}			t_set;
+
+// Mlx lib structure
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+}			t_mlx;
 
 // Mapping points of fdf file
 typedef struct s_pnt
@@ -34,30 +45,28 @@ typedef struct s_pnt
 	struct s_pnt	*next;
 }					t_pnt;
 
-// Mlx structure
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*win;
-}			t_mlx;
-
-// Setting master  of fdf
+// Fdf head structure
 typedef struct s_fdf
 {
-	t_config	*cnfg;
-	t_pnt		*map;
-	t_mlx		*minix;
-}				t_fdf;
+	t_set	set;
+	t_mlx	mlx;
+	t_pnt	*map;
+}			t_fdf;
 
-// Fdf head setting
-void	fdf_init_setting(char *pathmap, t_fdf **fdf);
-void	fdf_fdfclear(t_fdf **fdf);
+// enums
+# if ISLINUX > 0
+enum	e_key
+{
+	E_ESC = 65307,
+};
+# else
+enum	e_key
+{
+	E_ESC = 42111,
+};
+# endif
 
-// Standard config
-void	fdf_std_settings(t_fdf **fdf);
-
-// Mlx config
-void	fdf_initmlx(t_fdf **fdf);
+void	fdf_fdfclear(t_fdf *fdf);
 
 // Points struct
 t_pnt	*fdf_pntnew(int hgh, int x, int y, unsigned int clr);

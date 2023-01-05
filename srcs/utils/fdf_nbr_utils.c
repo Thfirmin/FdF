@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_hex_utils.c                                    :+:      :+:    :+:   */
+/*   fdf_nbr_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 14:46:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/27 23:30:04 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:12:02 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ unsigned int	fdf_htoi(char *hex)
 			nbr += (pow(16, (base - len)) * (10 + (*(hex + len) - 'A')));
 	}
 	return (nbr);
+}
+
+int	fdf_isnumber(char *nbr)
+{
+	int	i;
+
+	if (!nbr)
+		return (0);
+	if ((*nbr == '-') || (*nbr == '+'))
+		nbr++;
+	i = -1;
+	while (*(nbr + ++i))
+		if (!ft_isdigit(*(nbr + i)))
+			return (0);
+	return (1);
 }
 
 static void fdf_upping(unsigned int idx, char *hex)

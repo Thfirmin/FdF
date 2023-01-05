@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2022/12/30 15:33:29 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/03 22:37:49 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,21 +44,21 @@ SRC_GNL	= libgnl
 SRC_MLX	= libmlx
 
 SRC_MDTRY	= fdf_main.c \
-			  fdf_init_setting.c
+			  fdf.c \
+			  fdf_sethook.c \
+			  fdf_printfdf.c
 
 SRC_MAP		= fdf_is_validmap.c \
 			  fdf_initmap.c
 
-SRC_DATA	= fdf_fdfclear.c \
-			  fdf_pntadd_back.c \
-			  fdf_pntclear.c \
-			  fdf_pntnew.c \
-			  fdf_pntlast.c
+SRC_DATA	= fdf_fdfdata.c \
+			  fdf_pntdata.c
 
 SRC_UTILS	= fdf_closefile.c \
-			  fdf_error.c \
-			  fdf_hex_utils.c \
-			  fdf_isnumber.c
+			  fdf_exit.c \
+			  fdf_nbr_utils.c \
+			  fdf_draw_utils.c \
+			  fdf_keyhandler.c
 
 SRCS	= $(addprefix $(PTH_MDTRY),$(SRC_MDTRY)) \
 		  $(addprefix $(PTH_MAP),$(SRC_MAP)) \
@@ -73,8 +73,10 @@ MAKEFLAGS	+= --no-print-directory
 CFLAGS		= -Wall -Wextra -Werror
 ifeq ($(OS),Linux)
 MLXFLAGS	= -lXext -lX11 -lz
+DEF			= -D ISLINUX=1
 else ifeq ($(OS),Darwin)
 MLXFLAGS	= -framework OpenGL -framework AppKit
+DEF			= -D ISLINUX=0
 endif
 INCLUDE		= -Iincludes -I$(PTH_FT) -I$(PTH_GNL) -I$(PTH_MLX)
 LINKER		= -L$(PTH_FT) -l$(subst lib,,$(SRC_FT)) \
@@ -107,13 +109,18 @@ FULLER			= \e[7m
 # +>                                     RULES 
 
 .c.o:
-	$(CC) $(CFLAGS) -O3 $(INCLUDE) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) $(DEF) -O3 $(INCLUDE) -c $< -o $(<:.c=.o)
 
 all:	update_tools $(NAME)
 
 debug: CFLAGS += -g
 
 debug: update_dbgtools $(NAME)
+
+test:	update_dbgtools
+	$(CC) $(CFLAGS) -g -O3 $(INCLUDE) -c main.c -o main.o
+	$(CC) $(CFLAGS) -g main.o $(LINKER) $(MLXFLAGS) -o test
+	./test
 
 update_tools: $(PTH_MLX)
 	make -C $(PTH_FT)

@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_pntnew.c                                       :+:      :+:    :+:   */
+/*   fdf_draw_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 19:52:14 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/27 23:31:11 by thfirmin         ###   ########.fr       */
+/*   Created: 2023/01/03 20:13:11 by thfirmin          #+#    #+#             */
+/*   Updated: 2023/01/03 20:14:07 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pnt	*fdf_pntnew(int hgh, int x, int y, unsigned int clr)
+void	fdf_putpxl(t_set set, int x, int y, int color)
 {
-	t_pnt	*newpnt;
+	char	*begin;
 
-	newpnt = ft_calloc(1, sizeof(t_pnt));
-	if (!newpnt)
-		return (0);
-	(*newpnt).hgh = hgh;
-	(*newpnt).p_x = x;
-	(*newpnt).p_y = y;
-	(*newpnt).clr = clr;
-	(*newpnt).next = 0;
-	return (newpnt);
+	begin = set.head + (y * set.llen + x * (set.bpp / 8));
+	*(unsigned int *)begin = color;
 }

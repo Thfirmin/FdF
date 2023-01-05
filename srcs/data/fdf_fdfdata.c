@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_pntclear.c                                     :+:      :+:    :+:   */
+/*   fdf_fdfdata.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 19:52:18 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/25 22:04:24 by thfirmin         ###   ########.fr       */
+/*   Created: 2023/01/03 20:04:08 by thfirmin          #+#    #+#             */
+/*   Updated: 2023/01/03 20:05:06 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fdf_pntclear(t_pnt **map)
+void	fdf_fdfclear(t_fdf *fdf)
 {
-	t_pnt	*nxtpnt;
-
-	if (!map)
+	if (!fdf)
 		return ;
-	while (*map)
+	if (fdf->mlx.img)
+		mlx_destroy_image(fdf->mlx.mlx, fdf->mlx.img);
+	if (fdf->mlx.win)
+		mlx_destroy_window(fdf->mlx.mlx, fdf->mlx.win);
+	if (fdf->mlx.mlx)
 	{
-		nxtpnt = (**map).next;
-		free(*map);
-		*map = nxtpnt;
+		mlx_destroy_display(fdf->mlx.mlx);
+		free (fdf->mlx.mlx);
 	}
+	if (fdf->map)
+		fdf_pntclear(&fdf->map);
 }

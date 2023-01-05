@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_isnumber.c                                     :+:      :+:    :+:   */
+/*   fdf_keyhandler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 19:25:54 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/27 21:57:38 by thfirmin         ###   ########.fr       */
+/*   Created: 2023/01/03 22:34:55 by thfirmin          #+#    #+#             */
+/*   Updated: 2023/01/05 00:15:18 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	fdf_isnumber(char *nbr)
+void	fdf_change_spc(int key, t_fdf *fdf)
 {
-	int	i;
+	if (key == 108)
+		fdf->set.p_spc ++;
+	else
+		fdf->set.p_spc --;
+}
 
-	if (!nbr)
-		return (0);
-	if ((*nbr == '-') || (*nbr == '+'))
-		nbr++;
-	i = -1;
-	while (*(nbr + ++i))
-		if (!ft_isdigit(*(nbr + i)))
-			return (0);
-	return (1);
+int	fdf_keyhandler(int key, t_fdf *fdf)
+{
+	if (key == E_ESC)
+		fdf_cross(fdf);
+	else if ((key == 104) || (key == 108))
+		fdf_change_spc(key, fdf);
+	return (0);
 }

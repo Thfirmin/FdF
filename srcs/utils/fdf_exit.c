@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_pntlast.c                                      :+:      :+:    :+:   */
+/*   fdf_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 00:23:43 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/28 00:25:31 by thfirmin         ###   ########.fr       */
+/*   Created: 2022/12/25 20:03:58 by thfirmin          #+#    #+#             */
+/*   Updated: 2023/01/03 22:36:45 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pnt	*fdf_pntlast(t_pnt *map)
+void	fdf_error(char *fdf_errno, t_fdf *fdf)
 {
-	while (map && map->next)
-		map = map->next;
-	return (map);
+	if (fdf)
+		fdf_fdfclear(fdf);
+	ft_putendl_fd(fdf_errno, 2);
+	exit(2);
+}
+
+int	fdf_cross(t_fdf *fdf)
+{
+	fdf_fdfclear(fdf);
+	exit (0);
 }

@@ -6,11 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/29 13:45:05 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:31:36 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+// Read map and take minimum size to window
+static void		fdf_get_screen_size(t_fdf *fdf, int *sizex, int *sizey);
 
 // Read values, desassemble heigh and color and mount a point node
 static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf);
@@ -19,14 +22,14 @@ static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf);
 static char		*fdf_build_line(char *line, int x_co, t_fdf *fdf);
 
 // Initialize map: Read them and build map linked list
-void	fdf_initmap(char *pathmap, t_fdf **fdf)
+void	fdf_initmap(char *pathmap, t_fdf *fdf)
 {
 	int		fd;
 	int		x_co;
 	char	*line;
 	char	*end;
-	t_pnt	*lst;
 
+	fdf->map = 0;
 	fd = open (pathmap, O_RDONLY);
 	x_co = 0;
 	line = (void *)1;
@@ -34,16 +37,14 @@ void	fdf_initmap(char *pathmap, t_fdf **fdf)
 	{
 		line = get_next_line (fd);
 		ft_bzero((void *)ft_strchr(line, '\n'), 1);
-		if ((end = fdf_build_line(line, x_co, *fdf)))
+		if ((end = fdf_build_line(line, x_co, fdf)))
 			break ;
 		free (line);
 	}
 	fdf_closefile (fd, line);
 	if (end)
 		fdf_error (end, fdf);
-	lst = fdf_pntlast((*fdf)->map);
-	(*fdf)->cnfg->sz_x = lst->p_x;
-	(*fdf)->cnfg->sz_y = lst->p_y;
+	fdf_get_screen_size(fdf, &fdf->set.s_x, &fdf->set.s_y);
 }
 
 static char	*fdf_build_line(char *line, int x_co, t_fdf *fdf)
@@ -85,7 +86,18 @@ static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf)
 		color = fdf_htoi(hex);
 	}
 	else
-		color = fdf->cnfg->std_color;
+		color = fdf->set.std_clr;
 	node = fdf_pntnew(ft_atoi(vlue), x_co, y_co, color);
 	return (node);
+}
+
+static void	fdf_get_screen_size(t_fdf *fdf, int *sizex, int *sizey)
+{
+	t_pnt	*lst;
+
+	lst = fdf_pntlast(fdf->map);
+	*sizex = (lst->p_x * fdf->set.p_spc + (2 * fdf->set.border));
+	*sizey = (lst->p_y * fdf->set.p_spc + (2 * fdf->set.border));
+	if (*sizex < 190)
+		*sizex = 190;
 }
