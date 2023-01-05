@@ -10,14 +10,18 @@
 	[x] config standard color of window
 	[x] Config size of window
 
-[ ] Fix possibles memory segfault
+[x] Fix possibles memory segfault
 
-[ ] Initiallize mlx
-	[ ] Initialize mlx instance and take them
-	[ ] Initialize mlx window and take them
+[x] Initiallize mlx
+	[x] Initialize mlx instance and take them
+	[x] Initialize mlx window and take them
 
-[ ] Setup mlx
-	[ ] Config hooks to close program 
-	[ ] Config image of program
+[x] Setup mlx
+	[x] Config hooks to close program 
+	[x] Config image of program
 
-[ ] Run and loop image
+[x] Run and loop image
+
+[ ] Take 30th angle predict
+[ ] Implement bresenham line
+[ ] Implement gradient line
