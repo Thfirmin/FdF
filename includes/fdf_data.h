@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/03 00:21:00 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:33:53 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_pnt
 	struct s_pnt	*next;
 }					t_pnt;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	clr;
+}		t_point;
+
 // Fdf head structure
 typedef struct s_fdf
 {
@@ -58,11 +65,15 @@ typedef struct s_fdf
 enum	e_key
 {
 	E_ESC = 65307,
+	E_H = 104,
+	E_L = 108,
 };
 # else
 enum	e_key
 {
-	E_ESC = 42111,
+	E_ESC = 53,
+	E_L = 37,
+	E_H = 4,
 };
 # endif
 

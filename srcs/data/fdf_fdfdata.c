@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:04:08 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/03 20:05:06 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:21:34 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	fdf_fdfclear(t_fdf *fdf)
 	if (fdf->mlx.win)
 		mlx_destroy_window(fdf->mlx.mlx, fdf->mlx.win);
 	if (fdf->mlx.mlx)
-	{
-		mlx_destroy_display(fdf->mlx.mlx);
 		free (fdf->mlx.mlx);
-	}
 	if (fdf->map)
 		fdf_pntclear(&fdf->map);
 }
