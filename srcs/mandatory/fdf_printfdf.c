@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 01:16:56 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/10 03:25:03 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/10 04:56:29 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	fdf_printfdf(t_fdf *fdf)
 	int	c_x = fdf->set.s_x / 2;
 	int c_y = fdf->set.s_y / 2;
 	t_point bgn = {c_x, c_y, 0x00FF0000};
-	t_point end = {c_x + 90, c_y + 25, 0x000000FF};
+	t_point end = {c_x + 90, c_y + 25, 0x0000FF00};
 
 	fdf_putguideline(fdf);
 	fdf_putline(fdf, &bgn, &end);
