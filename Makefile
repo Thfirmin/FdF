@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2023/01/03 22:37:49 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/10 03:20:40 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,10 @@ SRC_DATA	= fdf_fdfdata.c \
 SRC_UTILS	= fdf_closefile.c \
 			  fdf_exit.c \
 			  fdf_nbr_utils.c \
-			  fdf_draw_utils.c \
-			  fdf_keyhandler.c
+			  fdf_putpxl.c \
+			  fdf_keyhandler.c \
+			  fdf_putline.c \
+			  fdf_clr_pass.c
 
 SRCS	= $(addprefix $(PTH_MDTRY),$(SRC_MDTRY)) \
 		  $(addprefix $(PTH_MAP),$(SRC_MAP)) \
