@@ -1,0 +1,4 @@
+radians * 180.0 / M_PI; (radtodeg)
+(deg * MT_PI) / 180 (degtorad)
+
+math me copiou no define "M_PI"

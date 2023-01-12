@@ -1,0 +1,12 @@
+\a      Write a <bell> character.
+           \b      Write a <backspace> character.
+           \c      Ignore remaining characters in this string.
+           \f      Write a <form-feed> character.
+           \n      Write a <new-line> character.
+           \r      Write a <carriage return> character.
+           \t      Write a <tab> character.
+           \v      Write a <vertical tab> character.
+           \'      Write a <single quote> character.
+           \\      Write a backslash character.
+           \num    Write a byte whose value is the 1-, 2-, or 3-digit octal number num.  Multibyte characters can be con-
+                   structed using multiple \num sequences.
