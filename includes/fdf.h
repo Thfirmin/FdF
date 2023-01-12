@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:18:24 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/10 00:46:05 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:00:31 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		fdf_printfdf(t_fdf *fdf);
 
 // Utils
 void	fdf_initmap(char *pathmap, t_fdf *fdf);
-void	fdf_putpxl(t_set set, int x, int y, int color);
+void	fdf_putpxl(t_set set, int x, int y, unsigned int color);
 
 #endif

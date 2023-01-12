@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2023/01/10 03:20:40 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/11 21:02:49 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRC_MDTRY	= fdf_main.c \
 			  fdf_printfdf.c
 
 SRC_MAP		= fdf_is_validmap.c \
-			  fdf_initmap.c
+			  fdf_initmap.c \
+			  fdf_equations.c
 
 SRC_DATA	= fdf_fdfdata.c \
 			  fdf_pntdata.c

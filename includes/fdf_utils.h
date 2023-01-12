@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 19:45:36 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/10 03:20:01 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:48:33 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int				fdf_isnumber(char *nbr);
 void			fdf_closefile(int fd, char *line);
 
 // Draw Utils
-void			fdf_putpxl(t_set set, int x, int y, int color);
-void			fdf_putline(t_fdf *fdf, t_point *bgn, t_point *end);
-int				fdf_clr_pass(t_point *bgn, t_point *end, int dp, int bin);
+void			fdf_putpxl(t_set set, int x, int y, unsigned int color);
+void			fdf_putline(t_fdf *fdf, t_pnt *bgn, t_pnt *end);
+unsigned int	fdf_clr_pass(t_pnt *bgn, t_pnt *end, int dp, int bin);
+
+void			fdf_trdtoiso(t_pnt *map, long double angle, long double rot);
 
 // Key Handler
 int				fdf_keyhandler(int key, t_fdf *fdf);

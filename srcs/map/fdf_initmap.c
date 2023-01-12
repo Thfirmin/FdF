@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:00:45 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/06 00:12:34 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:39:46 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	fdf_initmap(char *pathmap, t_fdf *fdf)
 	fdf_closefile (fd, line);
 	if (end)
 		fdf_error (end, fdf);
-	fdf_get_screen_size(fdf, &fdf->set.s_x, &fdf->set.s_y);
+	fdf_get_screen_size(fdf, &fdf->set.img_x, &fdf->set.img_y);
 }
 
 static char	*fdf_build_line(char *line, int x_co, t_fdf *fdf)

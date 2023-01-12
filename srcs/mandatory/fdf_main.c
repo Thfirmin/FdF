@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:19:46 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/10 00:45:47 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:42:25 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int argc, char *argv[])
 	fdf_is_validmap(argv[1]);
 	fdf_init(argv[1], &fdf);
 	fdf_sethook(&fdf);
-	mlx_loop_hook(fdf.mlx.mlx, fdf_printfdf, &fdf);
+	//mlx_loop_hook(fdf.mlx.mlx, fdf_printfdf, &fdf);
+	fdf_printfdf(&fdf);
 	mlx_loop(fdf.mlx.mlx);
 	fdf_fdfclear(&fdf);
 	return (0);

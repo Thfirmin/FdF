@@ -6,13 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:12:57 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/09 22:32:06 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:42:35 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_DATA_H
 # define FDF_DATA_H
-
+# define FDF_WIN_X 1920
+# define FDF_WIN_Y 1080
 // Graphic setting structure
 typedef struct s_set
 {
@@ -20,8 +21,10 @@ typedef struct s_set
 	int		p_spc;
 	int		border;
 	char	*head;
-	int		s_x;
-	int		s_y;
+	int		img_x;
+	int		img_y;
+	int		win_x;
+	int		win_y;
 	int		bpp;
 	int		llen;
 	int		endn;
@@ -44,13 +47,6 @@ typedef struct s_pnt
 	unsigned int	clr;
 	struct s_pnt	*next;
 }					t_pnt;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-	int	clr;
-}		t_point;
 
 // Fdf head structure
 typedef struct s_fdf
