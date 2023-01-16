@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2023/01/11 21:02:49 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/16 01:00:01 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,15 @@ MLX			= $(PTH_MLX)$(SRC_MLX).a
 # +>                                     PATH
 
 PTH_TOOL	= tools/
-PTH_FT		= $(addprefix $(PTH_TOOL),libft/)
-PTH_GNL		= $(addprefix $(PTH_TOOL),get_next_line/)
-PTH_MLX		= $(addprefix $(PTH_TOOL),mlx/)
+PTH_FT		= $(addprefix $(PTH_TOOL), libft/)
+PTH_GNL		= $(addprefix $(PTH_TOOL), get_next_line/)
+PTH_MLX		= $(addprefix $(PTH_TOOL), mlx/)
 
 PTH_SRCS	= srcs/
-PTH_MDTRY	= $(addprefix $(PTH_SRCS),mandatory/)
-PTH_MAP		= $(addprefix $(PTH_SRCS),map/)
-PTH_DATA	= $(addprefix $(PTH_SRCS),data/)
-PTH_UTILS	= $(addprefix $(PTH_SRCS),utils/)
+PTH_MAIN	= $(addprefix $(PTH_SRCS), main/)
+PTH_HNDLR	= $(addprefix $(PTH_SRCS), handlers/)
+PTH_MAP		= $(addprefix $(PTH_SRCS), map/)
+PTH_RNDR	= $(addprefix $(PTH_SRCS), render/)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    SOURCES
 
@@ -43,30 +43,27 @@ SRC_GNL	= libgnl
 
 SRC_MLX	= libmlx
 
-SRC_MDTRY	= fdf_main.c \
-			  fdf.c \
-			  fdf_sethook.c \
-			  fdf_printfdf.c
+SRC_MAIN	= fdf_main.c \
+			  fdf_init.c
 
-SRC_MAP		= fdf_is_validmap.c \
-			  fdf_initmap.c \
-			  fdf_equations.c
+SRC_HNDLR	= fdf_error_handler.c \
+			  fdf_head_handler.c \
+			  fdf_hooks_handler.c \
+			  fdf_control_map.c
 
-SRC_DATA	= fdf_fdfdata.c \
-			  fdf_pntdata.c
+SRC_MAP		= fdf_init_map.c \
+			  fdf_maputils.c \
 
-SRC_UTILS	= fdf_closefile.c \
-			  fdf_exit.c \
-			  fdf_nbr_utils.c \
+SRC_RNDR	= fdf_render_map.c \
 			  fdf_putpxl.c \
-			  fdf_keyhandler.c \
+			  fdf_tritobi.c \
 			  fdf_putline.c \
-			  fdf_clr_pass.c
+			  fdf_clr.c
 
-SRCS	= $(addprefix $(PTH_MDTRY),$(SRC_MDTRY)) \
-		  $(addprefix $(PTH_MAP),$(SRC_MAP)) \
-		  $(addprefix $(PTH_DATA),$(SRC_DATA)) \
-		  $(addprefix $(PTH_UTILS),$(SRC_UTILS))
+SRCS	= $(addprefix $(PTH_MAIN), $(SRC_MAIN)) \
+		  $(addprefix $(PTH_HNDLR), $(SRC_HNDLR)) \
+		  $(addprefix $(PTH_MAP), $(SRC_MAP)) \
+		  $(addprefix $(PTH_RNDR), $(SRC_RNDR))
 
 OBJS	= $(SRCS:.c=.o)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
