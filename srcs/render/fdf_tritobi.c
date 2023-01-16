@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:58:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 01:07:06 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 01:37:57 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	fdf_tritobi(t_fdf *fdf, double angle, double rot)
 
 static void	fdf_rotate_map(t_pnt *map, int z, double angle, double rot)
 {
-	(void) z;
 	while (map)
 	{
-		map->p_x = ((map->idx *  cos(angle)) + (map->idy *  cos(angle + rot)) + ((map->hgh) * cos(angle - rot)));
-		map->p_y = ((map->idx *  sin(angle)) + (map->idy *  sin(angle + rot)) + ((map->hgh) * sin(angle - rot)));
+		map->p_x = ((map->idx *  cos(angle)) + (map->idy *  cos(angle + rot)) + (map->hgh * z * cos(angle - rot)));
+		map->p_y = ((map->idx *  sin(angle)) + (map->idy *  sin(angle + rot)) + (map->hgh * z * sin(angle - rot)));
 		map = map->next;
 	}
 }

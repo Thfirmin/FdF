@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:37:23 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 01:16:45 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 01:33:24 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static int	fdf_keyhandler(int key, t_fdf *fdf)
 		fdf_rot_map(fdf, key);
 	else if ((key == K_J) || (key == K_L))
 		fdf_rot_map(fdf, key);
+	else if ((key == K_PLUS) || (key == K_MINUS))
+		fdf_resize_map(fdf, key);
+	else if ((key == K_U) || (key == K_O))
+		fdf_resize_map(fdf, key);
+	else
+		printf ("key = %d\n", key);
 	ft_bzero(fdf->img.head, (fdf->img.is_y * fdf->img.llen));
 	return (0);
 }
