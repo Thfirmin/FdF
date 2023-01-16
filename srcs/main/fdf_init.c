@@ -6,13 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:48:58 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 16:12:26 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:23:13 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	fdf_fill_img(t_mlx mlx, int color);
+static void	fdf_fill_img(t_mlx mlx, t_img img, int color);
 
 static void	fdf_init_image(t_fdf *fdf);
 
@@ -54,13 +54,13 @@ static void	fdf_init_image(t_fdf *fdf)
 	img->ip_y = 0;
 	printf ("win size %d x %d\n img size %d x %d\n img pos %d x %d\n", FDF_WIN_X, FDF_WIN_Y, fdf->img.is_x, fdf->img.is_y, fdf->img.ip_x, fdf->img.ip_y);
 	mlx->img = mlx_new_image(mlx->mlx, img->is_x, img->is_y);
-	fdf_fill_img(fdf->mlx, 0xDFDADA);
+	fdf_fill_img(fdf->mlx, fdf->img, 0xDFDADA);
 	if (!mlx->img)
 		fdf_error_handler("Image create has been failed", fdf);
 	img->head = mlx_get_data_addr(mlx->img, &img->bpp, &img->llen, &img->endn);
 }
 
-static void	fdf_fill_img(t_mlx mlx, int color)
+static void	fdf_fill_img(t_mlx mlx, t_img img, int color)
 {
 	int y;
 	int	x;
@@ -69,7 +69,7 @@ static void	fdf_fill_img(t_mlx mlx, int color)
 	while (++y < FDF_WIN_Y)
 	{
 		x = -1;
-		while (++x < FDF_WIN_X)
+		while (++x < img.ip_x)
 			mlx_pixel_put(mlx.mlx, mlx.win, x, y, color);
 	}
 }
