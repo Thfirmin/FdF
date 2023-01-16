@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:54:31 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 00:37:47 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:20:48 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,40 @@ static void	fdf_hvnext(t_pnt *map, t_pnt **nx, t_pnt **ny);
 
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map);
 
+static void	fdf_control_guide(t_fdf *fdf);
+
 int	fdf_render_map(t_fdf *fdf)
 {
 	t_mlx	*mlx;
 	t_img	img;
 
+
 	mlx = &fdf->mlx;
 	img = fdf->img;
+	fdf_control_guide(fdf);
 	fdf_tritobi(fdf, fdf->set.angle, fdf->set.rot);
 	fdf_plot_points(fdf, fdf->map);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, img.ip_x, img.ip_y);
 	return (0);
+}
+
+static void	fdf_control_guide(t_fdf *fdf)
+{
+	t_mlx	mlx;
+
+	mlx = fdf->mlx;
+	mlx_string_put(mlx.mlx, mlx.win, 5, 20, 0, "W: Move Up");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 35, 0, "A: Move Left");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 50, 0, "S: Move Down");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 65, 0, "D: Move Right");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 95, 0, "Q: Zoom In");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 110, 0, "E: Zoom Out");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 140, 0, "I: Translation Up");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 155, 0, "K: Translation Down");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 175, 0, "J: Rotate Left");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 190, 0, "L: Rotate Right");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 220, 0, "U: Plus Z-Scale");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 235, 0, "O: Minus Z-Scale");
 }
 
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map)

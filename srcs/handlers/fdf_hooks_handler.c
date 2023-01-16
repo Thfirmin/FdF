@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:37:23 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 01:33:24 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:28:59 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static int	fdf_keyhandler(int key, t_fdf *fdf)
 {
 	if (key == K_ESC)
 		fdf_cross(fdf);
-	else if ((key == K_UP_ARR) || (key == K_DWN_ARR))
+	else if ((key == K_W) || (key == K_S))
 		fdf_move_map(fdf, key);
-	else if ((key == K_RGH_ARR) || (key == K_LFT_ARR))
+	else if ((key == K_D) || (key == K_A))
 		fdf_move_map(fdf, key);
 	else if ((key == K_I) || (key == K_K))
 		fdf_rot_map(fdf, key);
 	else if ((key == K_J) || (key == K_L))
 		fdf_rot_map(fdf, key);
-	else if ((key == K_PLUS) || (key == K_MINUS))
+	else if ((key == K_E) || (key == K_Q))
 		fdf_resize_map(fdf, key);
 	else if ((key == K_U) || (key == K_O))
 		fdf_resize_map(fdf, key);

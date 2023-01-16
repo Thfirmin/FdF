@@ -6,11 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:48:58 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/15 22:59:55 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:12:26 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	fdf_fill_img(t_mlx mlx, int color);
 
 static void	fdf_init_image(t_fdf *fdf);
 
@@ -44,17 +46,30 @@ static void	fdf_init_image(t_fdf *fdf)
 	t_img	*img;
 	t_mlx	*mlx;
 
-	//lst = fdf_pntlast(fdf->map);
 	img = &fdf->img;
 	mlx = &fdf->mlx;
-	//img->is_x = abs(lst->idx * fdf->set.offset);
-	//img->is_y = abs(lst->idy * fdf->set.offset);
-	img->is_x = FDF_WIN_X;
+	img->is_x = FDF_WIN_X - ((FDF_WIN_X * 15) / 100);
 	img->is_y = FDF_WIN_Y;
-	img->ip_x = ((fdf->set.ws_x / 2) - (img->is_x / 2));
-	img->ip_y = ((fdf->set.ws_y / 2) - (img->is_y / 2));
+	img->ip_x = (0 + ((FDF_WIN_X * 15) / 100));
+	img->ip_y = 0;
+	printf ("win size %d x %d\n img size %d x %d\n img pos %d x %d\n", FDF_WIN_X, FDF_WIN_Y, fdf->img.is_x, fdf->img.is_y, fdf->img.ip_x, fdf->img.ip_y);
 	mlx->img = mlx_new_image(mlx->mlx, img->is_x, img->is_y);
+	fdf_fill_img(fdf->mlx, 0xDFDADA);
 	if (!mlx->img)
 		fdf_error_handler("Image create has been failed", fdf);
 	img->head = mlx_get_data_addr(mlx->img, &img->bpp, &img->llen, &img->endn);
+}
+
+static void	fdf_fill_img(t_mlx mlx, int color)
+{
+	int y;
+	int	x;
+
+	y = -1;
+	while (++y < FDF_WIN_Y)
+	{
+		x = -1;
+		while (++x < FDF_WIN_X)
+			mlx_pixel_put(mlx.mlx, mlx.win, x, y, color);
+	}
 }
