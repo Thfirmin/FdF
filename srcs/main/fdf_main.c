@@ -6,30 +6,12 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 01:05:42 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:37:39 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/*static void	fdf_checkfdf(t_fdf *fdf)
-{
-	t_mlx	*mlx = fdf->mlx;
-	t_set	*set = fdf->set;
-	t_img	*img = fdf->img;
-	t_pnt	*map = fdf->map;
-
-	printf ("fdf (%p)\n{", (void *)fdf);
-	printf ("\tmlx (%p) -> ", &fdf->mlx);
-	printf ("(mlx = %p, win = %p, img = %p)\n", mlx->mlx, mlx->win, mlx->img);
-	printf ("\tset (%p) -> ", &fdf->set);
-	printf ("(ws_x = %d, ws_y = %d, offset = %d, std_clr = %u)\n", set->ws_x, set->ws_y, set->offset, set->std_clr);
-	printf ("\timg (%p) -> ", &fdf->img);
-	printf ("(head = %p, is_x = %d, is_y = %d, bpp = %d, llen = %d, endn = %d)\n", img->head, img->is_x, img->is_y, img->bpp, img->llen, img->endn);
-	printf ("\tmap (%p) -> ", &fdf->map);
-	printf ("}\n");
-}
-*/
 static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[]);
 
 static void	fdf_validmap(int argc, char *argv[]);
@@ -82,8 +64,8 @@ static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
 		fdf->set.offset = 15;
 	if (!fdf->set.scale_z)
 		fdf->set.scale_z = 18;
-	fdf->set.angle = 30;
-	fdf->set.rot = 60;
+	fdf->set.angle = 60;
+	fdf->set.rot = 330;
 	fdf->set.mv_x = 0;
 	fdf->set.mv_y = 0;
 }

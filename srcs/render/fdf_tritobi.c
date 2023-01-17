@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:58:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 15:08:21 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:31:08 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	fdf_center_map(t_pnt *map, t_img img, t_set set);
 
 static void	fdf_scaling(t_pnt *map, int offset);
 
-static void	fdf_rotate_map(t_pnt *map, int z, double angle, double rot);
+static void	fdf_rotate_map(t_fdf *fdf, int z, double angle, double rot);
 
 void	fdf_tritobi(t_fdf *fdf, double angle, double rot)
 {
@@ -28,15 +28,23 @@ void	fdf_tritobi(t_fdf *fdf, double angle, double rot)
 	map = fdf->map;
 	angle *= M_PI / 180;
 	rot *= M_PI / 180;
-	fdf_rotate_map(map, fdf->set.scale_z, angle, rot);
+	fdf_rotate_map(fdf, fdf->set.scale_z, angle, rot);
 	fdf_scaling(map, fdf->set.offset);
 	fdf_center_map(map, fdf->img, fdf->set);
 }
 
-static void	fdf_rotate_map(t_pnt *map, int z, double angle, double rot)
+static void	fdf_rotate_map(t_fdf *fdf, int z, double angle, double rot)
 {
+	t_pnt *map;
+	(void) z;
+	(void) angle;
+	(void) rot;
+
+	map = fdf->map;
 	while (map)
 	{
+		//map->p_x = (map->idx - map->idy) * (fdf->set.offset / 2);
+		//map->p_y = (map->idx + map->idy) * (fdf->set.offset / 2);
 		map->p_x = ((map->idx *  cos(angle)) + (map->idy *  cos(angle + rot)) + (map->hgh * z * cos(angle - rot)));
 		map->p_y = ((map->idx *  sin(angle)) + (map->idy *  sin(angle + rot)) + (map->hgh * z * sin(angle - rot)));
 		map = map->next;

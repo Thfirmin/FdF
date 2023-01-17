@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:48:58 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 16:23:13 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:35:11 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	fdf_init_window(t_fdf *fdf)
 
 static void	fdf_init_image(t_fdf *fdf)
 {
-	//t_pnt	*lst;
 	t_img	*img;
 	t_mlx	*mlx;
 
@@ -52,7 +51,6 @@ static void	fdf_init_image(t_fdf *fdf)
 	img->is_y = FDF_WIN_Y;
 	img->ip_x = (0 + ((FDF_WIN_X * 15) / 100));
 	img->ip_y = 0;
-	printf ("win size %d x %d\n img size %d x %d\n img pos %d x %d\n", FDF_WIN_X, FDF_WIN_Y, fdf->img.is_x, fdf->img.is_y, fdf->img.ip_x, fdf->img.ip_y);
 	mlx->img = mlx_new_image(mlx->mlx, img->is_x, img->is_y);
 	fdf_fill_img(fdf->mlx, fdf->img, 0xDFDADA);
 	if (!mlx->img)

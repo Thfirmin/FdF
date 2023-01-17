@@ -6,13 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:54:31 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 16:20:48 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:29:12 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	fdf_hvnext(t_pnt *map, t_pnt **nx, t_pnt **ny);
+static t_pnt	*fdf_hvnext(t_pnt *map, int x, int y, int bin);
 
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map);
 
@@ -22,7 +22,6 @@ int	fdf_render_map(t_fdf *fdf)
 {
 	t_mlx	*mlx;
 	t_img	img;
-
 
 	mlx = &fdf->mlx;
 	img = fdf->img;
@@ -52,37 +51,50 @@ static void	fdf_control_guide(t_fdf *fdf)
 	mlx_string_put(mlx.mlx, mlx.win, 5, 235, 0, "O: Minus Z-Scale");
 }
 
+// Lembrar de tirar linha e ponto
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map)
 {
-	t_pnt	*nxtx;
-	t_pnt	*nxty;
+	t_pnt	*nxt;
+	int		line = 1;
 
 	while (map)
 	{
-		fdf_hvnext(map, &nxtx, &nxty);
-		if (nxtx)
-			fdf_putline(fdf, map, nxtx);
-		if (nxty)
-			fdf_putline(fdf, map, nxty);
+		fdf_putpxl(fdf->img, map->p_x, map->p_y, map->clr);
+		if (line)
+		{
+			nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 0);
+			if (nxt)
+				fdf_putline(fdf, map, nxt);
+			nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 1);
+			if (nxt)
+				fdf_putline(fdf, nxt, map);
+		//	if (nxty)
+		//		fdf_putline(fdf, map, nxty);
+			//if (nxtx)
+			//	printf ("(%d, %d)[%d, %d]{0x%X} -> (%d, %d)[%d, %d]{0x%X}\n", map->idx, map->idy, map->p_x, map->p_y, map->clr, nxtx->idx, nxtx->idy, nxtx->p_x, nxtx->p_y, nxtx->clr);
+			//if (nxty)
+			//	printf ("(%d, %d)[%d, %d]{0x%X} -> (%d, %d)[%d, %d]{0x%X}\n", map->idx, map->idy, map->p_x, map->p_y, map->clr, nxty->idx, nxty->idy, nxty->p_x, nxty->p_y, nxty->clr);
+		}
 		map = map->next;
 	}
 }
 
-static void	fdf_hvnext(t_pnt *map, t_pnt **nx, t_pnt **ny)
+static t_pnt	*fdf_hvnext(t_pnt *map, int x, int y, int bin)
 {
-	int	x;
-	int	y;
-
-	x = map->idx;
-	y = map->idy;
-	*nx = 0;
-	*ny = 0;
 	while (map)
 	{
-		if (((map->idx - 1) == x) && (map->idy == y))
-			*nx = map;
-		if (((map->idy - 1) == y) && (map->idx == x))
-			*ny = map;
-		map = map->next;
+		if (!bin)
+		{
+			if (((map->idx - 1) == x) && (map->idy == y))
+				return (map);
+		}
+		else
+		{
+			if (((map->idy - 1) == y) && (map->idx == x))
+				return (map);
+		}
+		map =  map->next;
 	}
+	return (0);
 }
+

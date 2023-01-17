@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 01:49:39 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/13 21:55:19 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:57:16 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	fdf_init_map(t_fdf *fdf, char *pathmap)
 	char	*line;
 
 	fd = open(pathmap, O_RDONLY);
-	y_co = 1;
-	while (y_co)
+	y_co = 0;
+	while (y_co > -1)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -34,7 +34,7 @@ void	fdf_init_map(t_fdf *fdf, char *pathmap)
 		ft_bzero((void *)ft_strchr(line, '\n'), 1);
 		y_co = fdf_build_line(fdf, line, y_co);
 		free(line);
-		if (y_co)
+		if (y_co > -1)
 			y_co ++;
 	}
 	get_next_line(-1);
@@ -54,11 +54,11 @@ static int	fdf_build_line(t_fdf *fdf, char *line, int y_co)
 	x_co = -1;
 	while (split && *(split + ++x_co))
 	{
-		point = fdf_build_point(*(split + x_co), x_co + 1, y_co, fdf);
+		point = fdf_build_point(*(split + x_co), x_co, y_co, fdf);
 		if (!point)
 		{
 			ft_frsplit(split);
-			return (0);
+			return (-1);
 		}
 		fdf_pntadd_back(&(fdf->map), point);
 	}
@@ -66,7 +66,7 @@ static int	fdf_build_line(t_fdf *fdf, char *line, int y_co)
 	if (memo < 0)
 		memo = x_co;
 	else if (memo != x_co)
-		return (0);
+		return (-1);
 	return (y_co);
 }
 
