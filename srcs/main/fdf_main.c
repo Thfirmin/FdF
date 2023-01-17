@@ -6,11 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 02:11:51 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:47:29 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	fdf_settupmap(t_fdf *fdf);
 
 static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[]);
 
@@ -64,6 +66,16 @@ static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
 		fdf->set.offset = 15;
 	if (!fdf->set.scale_z)
 		fdf->set.scale_z = 1;
+	fdf->set.angle = 0;
+	fdf->set.rot = 90;
+	fdf->set.mv_x = 0;
+	fdf->set.mv_y = 0;
+}
+
+void	fdf_settupmap(t_fdf *fdf)
+{
+	fdf->set.offset = 15;
+	fdf->set.scale_z = 1;
 	fdf->set.angle = 0;
 	fdf->set.rot = 90;
 	fdf->set.mv_x = 0;

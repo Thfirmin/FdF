@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:54:31 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 01:59:49 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:52:23 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	fdf_control_guide(t_fdf *fdf)
 	mlx_string_put(mlx.mlx, mlx.win, 5, 190, 0, "L: Rotate Right");
 	mlx_string_put(mlx.mlx, mlx.win, 5, 220, 0, "U: Plus Z-Scale");
 	mlx_string_put(mlx.mlx, mlx.win, 5, 235, 0, "O: Minus Z-Scale");
+	mlx_string_put(mlx.mlx, mlx.win, 5, 265, 0, "ESPACE: Reset default set");
 }
 
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map)

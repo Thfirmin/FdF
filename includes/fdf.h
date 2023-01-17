@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:52:42 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 01:15:16 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:47:44 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # include "fdf_render.h"
 
 void	fdf_init(t_fdf *fdf, char *pathmap);
+void	fdf_settupmap(t_fdf *fdf);
 
 #endif
