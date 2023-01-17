@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:55:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 16:17:05 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:18:56 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 // Defines
 # ifndef FDF_WIN_X
-#  define FDF_WIN_X 900
+#  define FDF_WIN_X 1366
 # endif
 
 # ifndef FDF_WIN_Y
-#  define FDF_WIN_Y 350
+#  define FDF_WIN_Y 768
 # endif
 
 // Enums
