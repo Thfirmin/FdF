@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 00:37:39 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:00:43 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
 	if (!fdf->set.offset)
 		fdf->set.offset = 15;
 	if (!fdf->set.scale_z)
-		fdf->set.scale_z = 18;
-	fdf->set.angle = 60;
-	fdf->set.rot = 330;
+		fdf->set.scale_z = 5;
+	fdf->set.angle = 181;
+	fdf->set.rot = 90;
 	fdf->set.mv_x = 0;
 	fdf->set.mv_y = 0;
 }
