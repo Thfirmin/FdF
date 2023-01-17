@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 23:07:19 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/15 23:49:50 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:17:16 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int				fdf_render_map(t_fdf *fdf);
 void			fdf_putpxl(t_img img, int x, int y, unsigned int color);
 void			fdf_tritobi(t_fdf *fdf, double angle, double rot);
 void			fdf_putline(t_fdf *fdf, t_pnt *bgn, t_pnt *end);
-unsigned int	fdf_clr(t_pnt *bgn, t_pnt *end, int dp, int bin);
+unsigned int	fdf_clr(t_pnt *bgn, t_pnt *end, int ap, int bin);
 
 #endif

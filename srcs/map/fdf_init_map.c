@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 01:49:39 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 19:57:16 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:23:42 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,20 @@ static unsigned	fdf_takevlue_trgb(char *hex, t_fdf *fdf)
 {
 	unsigned int	clr;
 	short			i;
+	short			x;
 	
 	clr = 0;
 	i = ft_strlen(hex);
 	if (!(i == 8 || i == 6))
 		return (fdf->set.std_clr);
-	while (--i  > -1)
+	x = -1;
+	while (++x < i)
 	{
 		clr *= 16;
-		if (*(hex + i) >= '0' && *(hex + i) <= '9')
-			clr += (*(hex + i) - '0');
-		else if (*(hex + i) >= 'A' && *(hex + i) <= 'F')
-			clr += (*(hex + i) - 'A' + 10);
+		if (*(hex + x) >= '0' && *(hex + x) <= '9')
+			clr += (*(hex + x) - '0');
+		else if (*(hex + x) >= 'A' && *(hex + x) <= 'F')
+			clr += (*(hex + x) - 'A' + 10);
 		else
 			clr += 15;
 	}

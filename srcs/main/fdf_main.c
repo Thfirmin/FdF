@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 01:00:43 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:07:34 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	fdf_validmap(int argc, char *argv[]);
 int	main(int argc, char *argv[])
 {
 	t_fdf	fdf;
-	
+
 	fdf_validmap(argc, argv);
 	fdf_initializefdf(&fdf, argc, argv);
 	fdf_init(&fdf, argv[1]);
@@ -64,7 +64,7 @@ static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
 		fdf->set.offset = 15;
 	if (!fdf->set.scale_z)
 		fdf->set.scale_z = 5;
-	fdf->set.angle = 181;
+	fdf->set.angle = 0;
 	fdf->set.rot = 90;
 	fdf->set.mv_x = 0;
 	fdf->set.mv_y = 0;

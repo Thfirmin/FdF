@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 23:41:42 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 00:09:23 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:46:28 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,28 @@ static unsigned int	fdf_get_t(t_pnt *bgn, t_pnt *end, float dist);
 unsigned int	fdf_clr(t_pnt *bgn, t_pnt *end, int ap, int bin)
 {
 	unsigned int	clr;
-	float			dist;
+	float			prct;
+	int				aux;
 
 	clr = 0;
 	if (!bin)
-		dist = (ap - abs(end->p_x - bgn->p_x));
+	{
+		aux = abs(end->p_x - bgn->p_x);
+		if (!aux)
+			aux ++;
+		prct = ((abs(ap - bgn->p_x) * 100) / aux);
+	}
 	else
-		dist = (ap - abs(end->p_y - bgn->p_y));
-	dist = ((dist * 100) / ap);
-	clr |= fdf_get_t(bgn, end, dist);
-	clr |= fdf_get_r(bgn, end, dist);
-	clr |= fdf_get_g(bgn, end, dist);
-	clr |= fdf_get_b(bgn, end, dist);
+	{
+		aux = abs(end->p_y - bgn->p_y);
+		if (!aux)
+			aux ++;
+		prct = ((abs(ap - bgn->p_y) * 100) / aux);
+	}
+	clr |= fdf_get_t(bgn, end, prct);
+	clr |= fdf_get_r(bgn, end, prct);
+	clr |= fdf_get_g(bgn, end, prct);
+	clr |= fdf_get_b(bgn, end, prct);
 	return (clr);
 }
 

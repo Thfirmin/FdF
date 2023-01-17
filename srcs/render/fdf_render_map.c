@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:54:31 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 00:29:12 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:59:49 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,18 @@ static void	fdf_control_guide(t_fdf *fdf)
 	mlx_string_put(mlx.mlx, mlx.win, 5, 235, 0, "O: Minus Z-Scale");
 }
 
-// Lembrar de tirar linha e ponto
 static void	fdf_plot_points(t_fdf *fdf, t_pnt *map)
 {
 	t_pnt	*nxt;
-	int		line = 1;
 
 	while (map)
 	{
-		fdf_putpxl(fdf->img, map->p_x, map->p_y, map->clr);
-		if (line)
-		{
-			nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 0);
-			if (nxt)
-				fdf_putline(fdf, map, nxt);
-			nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 1);
-			if (nxt)
-				fdf_putline(fdf, nxt, map);
-		//	if (nxty)
-		//		fdf_putline(fdf, map, nxty);
-			//if (nxtx)
-			//	printf ("(%d, %d)[%d, %d]{0x%X} -> (%d, %d)[%d, %d]{0x%X}\n", map->idx, map->idy, map->p_x, map->p_y, map->clr, nxtx->idx, nxtx->idy, nxtx->p_x, nxtx->p_y, nxtx->clr);
-			//if (nxty)
-			//	printf ("(%d, %d)[%d, %d]{0x%X} -> (%d, %d)[%d, %d]{0x%X}\n", map->idx, map->idy, map->p_x, map->p_y, map->clr, nxty->idx, nxty->idy, nxty->p_x, nxty->p_y, nxty->clr);
-		}
+		nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 0);
+		if (nxt)
+			fdf_putline(fdf, map, nxt);
+		nxt = fdf_hvnext(fdf->map, map->idx, map->idy, 1);
+		if (nxt)
+			fdf_putline(fdf, nxt, map);
 		map = map->next;
 	}
 }

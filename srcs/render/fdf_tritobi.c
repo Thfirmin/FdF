@@ -6,14 +6,11 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:58:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 00:46:05 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:31:51 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// u = xcos(a) + ycos(a+120°) + zcos(a-120°)
-// v = xsin(a) + ysin(a+120°) + zsin(a-120°) 
 
 static void	fdf_center_map(t_pnt *map, t_img img, t_set set);
 
@@ -36,15 +33,10 @@ void	fdf_tritobi(t_fdf *fdf, double angle, double rot)
 static void	fdf_rotate_map(t_fdf *fdf, int z, double angle, double rot)
 {
 	t_pnt *map;
-	(void) z;
-	(void) angle;
-	(void) rot;
 
 	map = fdf->map;
 	while (map)
 	{
-		//map->p_x = (map->idx - map->idy) * (fdf->set.offset / 2);
-		//map->p_y = (map->idx + map->idy) * (fdf->set.offset / 2);
 		map->p_x = ((map->idx *  cos(angle)) + (map->idy *  (cos(angle) + cos(rot))) + (map->hgh * z * (cos(angle) - cos(rot))));
 		map->p_y = ((map->idx *  sin(angle)) + (map->idy *  (sin(angle) + sin(rot))) + (map->hgh * z * (sin(angle) - sin(rot))));
 		map = map->next;
