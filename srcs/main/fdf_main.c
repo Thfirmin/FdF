@@ -6,15 +6,15 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 02:47:29 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:13:33 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fdf_settupmap(t_fdf *fdf);
+void		fdf_settupmap(t_fdf *fdf);
 
-static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[]);
+static void	fdf_initializefdf(t_fdf *fdf, int argc, char *argv[]);
 
 static void	fdf_validmap(int argc, char *argv[]);
 
@@ -49,7 +49,7 @@ static void	fdf_validmap(int argc, char *argv[])
 	close(fd);
 }
 
-static void fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
+static void	fdf_initializefdf(t_fdf *fdf, int argc, char *argv[])
 {
 	fdf->mlx.mlx = 0;
 	fdf->mlx.win = 0;

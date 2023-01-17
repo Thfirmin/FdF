@@ -6,13 +6,13 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 01:49:39 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 01:23:42 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:12:12 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static unsigned	fdf_takevlue_trgb(char *hex, t_fdf *fdf);
+static int		fdf_takevlue_trgb(char *hex, t_fdf *fdf);
 
 static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf);
 
@@ -30,7 +30,7 @@ void	fdf_init_map(t_fdf *fdf, char *pathmap)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		ft_bzero((void *)ft_strchr(line, '\n'), 1);
 		y_co = fdf_build_line(fdf, line, y_co);
 		free(line);
@@ -47,7 +47,7 @@ static int	fdf_build_line(t_fdf *fdf, char *line, int y_co)
 {
 	int			x_co;
 	char		**split;
-	static int	memo =  -1;
+	static int	memo = -1;
 	t_pnt		*point;
 
 	split = ft_split(line, ' ');
@@ -72,9 +72,9 @@ static int	fdf_build_line(t_fdf *fdf, char *line, int y_co)
 
 static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf)
 {
-	t_pnt			*node;
-	char			*hex;
-	unsigned int	color;
+	t_pnt	*node;
+	char	*hex;
+	int		color;
 
 	hex = ft_strchr(vlue, ',');
 	if (hex)
@@ -91,12 +91,12 @@ static t_pnt	*fdf_build_point(char *vlue, int x_co, int y_co, t_fdf *fdf)
 	return (node);
 }
 
-static unsigned	fdf_takevlue_trgb(char *hex, t_fdf *fdf)
+static int	fdf_takevlue_trgb(char *hex, t_fdf *fdf)
 {
-	unsigned int	clr;
-	short			i;
-	short			x;
-	
+	int		clr;
+	short	i;
+	short	x;
+
 	clr = 0;
 	i = ft_strlen(hex);
 	if (!(i == 8 || i == 6))

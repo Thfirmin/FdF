@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 23:34:07 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 01:39:32 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:03:02 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ void	fdf_putline(t_fdf *fdf, t_pnt *bgn, t_pnt *end)
 
 static void	fdf_bresenhamx(t_fdf *fdf, t_pnt *bgn, t_pnt *end, int bin)
 {
-	int	m_new;
 	int	slope;
 	int	x;
 	int	y;
 
-	m_new = (2 * abs(end->p_y - bgn->p_y));
-	slope = (m_new - abs(end->p_x - bgn->p_x));
+	slope = ((2 * abs(end->p_y - bgn->p_y)) - abs(end->p_x - bgn->p_x));
 	x = bgn->p_x;
 	y = bgn->p_y;
 	fdf_putpxl(fdf->img, x, y, fdf_clr(bgn, end, x, bin));
@@ -49,7 +47,7 @@ static void	fdf_bresenhamx(t_fdf *fdf, t_pnt *bgn, t_pnt *end, int bin)
 			x ++;
 		else if (x > end->p_x)
 			x --;
-		slope += m_new;
+		slope += (2 * abs(end->p_y - bgn->p_y));
 		if (slope >= 0)
 		{
 			if (y < end->p_y)
@@ -64,13 +62,11 @@ static void	fdf_bresenhamx(t_fdf *fdf, t_pnt *bgn, t_pnt *end, int bin)
 
 static void	fdf_bresenhamy(t_fdf *fdf, t_pnt *bgn, t_pnt *end, int bin)
 {
-	int	m_new;
 	int	slope;
 	int	x;
 	int	y;
 
-	m_new = (2 * abs(end->p_x - bgn->p_x));
-	slope = (m_new - abs(end->p_y - bgn->p_y));
+	slope = ((2 * abs(end->p_y - bgn->p_y)) - abs(end->p_y - bgn->p_y));
 	x = bgn->p_x;
 	y = bgn->p_y;
 	fdf_putpxl(fdf->img, x, y, fdf_clr(bgn, end, y, bin));
@@ -80,7 +76,7 @@ static void	fdf_bresenhamy(t_fdf *fdf, t_pnt *bgn, t_pnt *end, int bin)
 			y ++;
 		else if (y > end->p_y)
 			y --;
-		slope += m_new;
+		slope += (2 * abs(end->p_y - bgn->p_y));
 		if (slope >= 0)
 		{
 			if (x < end->p_x)

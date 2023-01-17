@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:55:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 02:51:02 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:34:09 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 // Enums
 # if ISLINUX > 0
+
 enum	e_key
 {
 	K_ESC = 65307,
@@ -42,6 +43,7 @@ enum	e_key
 	K_ESP = 32,
 };
 # else
+
 enum	e_key
 {
 	K_ESC = 53,

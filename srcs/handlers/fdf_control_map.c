@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 00:48:53 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 02:08:03 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:06:35 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	fdf_move_map(t_fdf *fdf, int key)
 	else if (key == K_D)
 		fdf->set.mv_x += 1;
 }
-
 
 void	fdf_rot_map(t_fdf *fdf, int key)
 {

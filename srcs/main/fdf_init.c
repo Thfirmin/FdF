@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:48:58 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/16 16:35:11 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:12:45 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	fdf_init_image(t_fdf *fdf)
 
 static void	fdf_fill_img(t_mlx mlx, t_img img, int color)
 {
-	int y;
+	int	y;
 	int	x;
 
 	y = -1;

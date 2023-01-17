@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:54:31 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 02:55:50 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:04:03 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_pnt	*fdf_hvnext(t_pnt *map, int x, int y, int bin);
 
-static void	fdf_plot_points(t_fdf *fdf, t_pnt *map);
+static void		fdf_plot_points(t_fdf *fdf, t_pnt *map);
 
-static void	fdf_control_guide(t_fdf *fdf);
+static void		fdf_control_guide(t_fdf *fdf);
 
 int	fdf_render_map(t_fdf *fdf)
 {
@@ -82,8 +82,7 @@ static t_pnt	*fdf_hvnext(t_pnt *map, int x, int y, int bin)
 			if (((map->idy - 1) == y) && (map->idx == x))
 				return (map);
 		}
-		map =  map->next;
+		map = map->next;
 	}
 	return (0);
 }
-

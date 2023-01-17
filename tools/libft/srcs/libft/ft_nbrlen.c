@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 23:47:20 by thfirmin          #+#    #+#             */
-/*   Updated: 2022/12/11 21:01:46 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:32:38 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 // Return number of algorism in a integer
 int	ft_nbrlen(int n)
 {
-	unsigned	nbr;
-	int			len;
+	unsigned int	nbr;
+	int				len;
 
 	len = 0;
 	if (n < 0 && ++len)
