@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2023/01/16 01:00:01 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/18 17:04:24 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ OBJS	= $(SRCS:.c=.o)
 # <+-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-' #
 # +>                                    ALIASES 
 
-MAKEFLAGS	+= --no-print-directory
+MAKEFLAGS	+= --no-print-directory -s
 CFLAGS		= -Wall -Wextra -Werror
 ifeq ($(OS),Linux)
 MLXFLAGS	= -lXext -lX11 -lz
@@ -123,14 +123,14 @@ test:	update_dbgtools
 	./test
 
 update_tools: $(PTH_MLX)
-	make -C $(PTH_FT)
-	make -C $(PTH_GNL)
-	make -C $(PTH_MLX)
+	make -s -C $(PTH_FT)
+	make -s -C $(PTH_GNL)
+	make -s -C $(PTH_MLX)
 
 update_dbgtools: $(PTH_MLX)
-	make -C $(PTH_FT) debug
-	make -C $(PTH_GNL) debug
-	make -C $(PTH_MLX) debug
+	make -s -C $(PTH_FT) debug
+	make -s -C $(PTH_GNL) debug
+	make -s -C $(PTH_MLX) debug
 
 $(PTH_MLX):
 	tar -xf tools/minilibx-$(OS).tar -C tools/
@@ -144,17 +144,17 @@ ifneq (,$(shell ls $(OBJS) 2> /dev/null))
 endif
 
 tclean:
-	make -C $(PTH_FT) clean
-	make -C $(PTH_GNL) clean
+	make -s -C $(PTH_FT) clean
+	make -s -C $(PTH_GNL) clean
 ifneq (,$(shell ls $(PTH_MLX) 2> /dev/null))
-	make -C $(PTH_MLX) clean
+	make -s -C $(PTH_MLX) clean
 endif
 
 clean: mclean tclean
 
 fclean: clean
-	make -C $(PTH_FT) fclean
-	make -C $(PTH_GNL) fclean
+	make -s -C $(PTH_FT) fclean
+	make -s -C $(PTH_GNL) fclean
 ifneq (,$(shell ls $(PTH_MLX) 2> /dev/null))
 	rm -rf $(PTH_MLX)
 endif
