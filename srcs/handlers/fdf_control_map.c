@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 00:48:53 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:06:35 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:52:28 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	fdf_rot_map(t_fdf *fdf, int key)
 		else if (key == K_L)
 			fdf->set.angle ++;
 	}
+	printf("Angle: %d, rot: %d\n", fdf->set.angle, fdf->set.rot);
 }
 
 void	fdf_resize_map(t_fdf *fdf, int key)

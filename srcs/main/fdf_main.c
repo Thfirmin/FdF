@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:57:00 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:13:33 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:01:06 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	fdf_settupmap(t_fdf *fdf)
 {
 	fdf->set.offset = 15;
 	fdf->set.scale_z = 1;
-	fdf->set.angle = 0;
-	fdf->set.rot = 90;
+	fdf->set.angle = -45;
+	fdf->set.rot = 228;
 	fdf->set.mv_x = 0;
 	fdf->set.mv_y = 0;
 }
