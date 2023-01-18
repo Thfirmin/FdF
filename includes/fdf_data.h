@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 23:55:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:34:09 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:27:40 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,19 @@ enum	e_key
 enum	e_key
 {
 	K_ESC = 53,
-	K_RGH_ARR = 54,
-	K_UP_ARR = 55,
-	K_LFT_ARR = 56,
-	K_DWN_ARR = 57,
+	K_A = 0,
+	K_D = 2,
+	K_E = 14,
+	K_I = 34,
+	K_J = 38,
+	K_K = 40,
+	K_L = 37,
+	K_O = 31,
+	K_Q = 12,
+	K_S = 1,
+	K_U = 32,
+	K_W = 13,
+	K_ESP = 49,
 };
 # endif
 

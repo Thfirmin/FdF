@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 23:34:07 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:03:02 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:33:32 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fdf_putline(t_fdf *fdf, t_pnt *bgn, t_pnt *end)
 
 	dx = abs(end->p_x - bgn->p_x);
 	dy = abs(end->p_y - bgn->p_y);
-	bin = !(dx > dy);
+	bin = !(dx >= dy);
 	if (!bin)
 		fdf_bresenhamx(fdf, bgn, end, bin);
 	else

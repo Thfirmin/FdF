@@ -6,7 +6,7 @@
 /*   By: thfirmin <thfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:58:26 by thfirmin          #+#    #+#             */
-/*   Updated: 2023/01/17 21:11:11 by thfirmin         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:26:11 by thfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,16 @@ static void	fdf_rotate_map(t_fdf *fdf, int z, double angle, double rot)
 	cr = cos(rot);
 	sa = sin(angle);
 	sr = sin(rot);
-	(void) ca;
-	(void) cr;
-	(void) sa;
-	(void) sr;
 	while (map)
 	{
-		map->p_x = ((map->idx * cos(angle)) + (map->idy * (cos(angle) + cos(rot))) + (map->hgh * z * (cos(angle) - cos(rot))));
-		map->p_y = ((map->idx * sin(angle)) + (map->idy * (sin(angle) + sin(rot))) + (map->hgh * z * (sin(angle) - sin(rot))));
-		//map->p_x = (map->idx * ca);
-		//map->p_x += (map->idy * (ca + cr));
-		//map->p_x += (map->hgh * z * (ca - cr));
-		//map->p_y = (map->idx * sa);
-		//map->p_y += (map->idy * (sa + sr));
-		//map->p_y += (map->hgh * z * (sa - sr));
+		//map->p_x = ((map->idx * cos(angle)) + (map->idy * (cos(angle) + cos(rot))) + (map->hgh * z * (cos(angle) - cos(rot))));
+		//map->p_y = ((map->idx * sin(angle)) + (map->idy * (sin(angle) + sin(rot))) + (map->hgh * z * (sin(angle) - sin(rot))));
+		map->p_x = (map->idx * ca);
+		map->p_x = (map->p_x + (map->idy * (ca + cr)));
+		map->p_x = (map->p_x + (map->hgh * z * (ca - cr)));
+		map->p_y = (map->idx * sa);
+		map->p_y = (map->p_y + (map->idy * (sa + sr)));
+		map->p_y = (map->p_y + (map->hgh * z * (sa - sr)));
 		map = map->next;
 	}
 }
