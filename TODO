@@ -1,27 +1,19 @@
-[x] Initialize Map
-	[x] Verify valid map
-	[x] Take lines and x coordenate of map
-	[x] Take points and y coordenate of map
-	[x] Verify differents lenght lines
-	[x] Take value of height and color of map
-	[x] Take build point stack
-
-[x] Setup Map
-	[x] config standard color of window
-	[x] Config size of window
-
-[x] Fix possibles memory segfault
-
-[x] Initiallize mlx
-	[x] Initialize mlx instance and take them
-	[x] Initialize mlx window and take them
-
-[x] Setup mlx
-	[x] Config hooks to close program 
-	[x] Config image of program
-
-[x] Run and loop image
-
-[ ] Take 30th angle predict
-[ ] Implement bresenham line
-[ ] Implement gradient line
+[-] Fix bresenham putline
+	[-] Take to project repo
+[-] Reproject FdF
+	[-] Use matriz array struct instead linked list struct
+	[-] Render Map while iterate and calculate them (Don't use constant open and close nor get_next_line it's disgusting)
+	[-] Componentize better FdF to new implements
+[-] Implementions
+	[-] Better moving map
+	[-] Use of Mouse
+	[-] Better info log display map
+	[-] Rotation
+	[-] Translations
+[-] Ultra Implements
+	[-] Create New map from 0
+	[-] Alterate map
+		[-] Alterate points heigh
+		[-] Alterate points color
+		[-] Verify point propriety
+	[-] Export map in a file map
