@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 20:10:53 by marvin            #+#    #+#              #
-#    Updated: 2023/01/16 01:00:01 by thfirmin         ###   ########.fr        #
+#    Updated: 2023/01/19 10:17:30 by thfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,24 +113,10 @@ FULLER			= \e[7m
 
 all:	update_tools $(NAME)
 
-debug: CFLAGS += -g
-
-debug: update_dbgtools $(NAME)
-
-test:	update_dbgtools
-	$(CC) $(CFLAGS) -g -O3 $(INCLUDE) -c main.c -o main.o
-	$(CC) $(CFLAGS) -g main.o $(LINKER) $(MLXFLAGS) -o test
-	./test
-
 update_tools: $(PTH_MLX)
 	make -C $(PTH_FT)
 	make -C $(PTH_GNL)
 	make -C $(PTH_MLX)
-
-update_dbgtools: $(PTH_MLX)
-	make -C $(PTH_FT) debug
-	make -C $(PTH_GNL) debug
-	make -C $(PTH_MLX) debug
 
 $(PTH_MLX):
 	tar -xf tools/minilibx-$(OS).tar -C tools/
